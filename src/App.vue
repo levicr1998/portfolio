@@ -25,9 +25,7 @@ export default {
 
 #app {
   font-family: 'Roboto', sans-serif;
-  text-align: center;
   color:$secondary-color;
-  margin-top: 60px;
   top:0;
   left:0;
   padding: 0;

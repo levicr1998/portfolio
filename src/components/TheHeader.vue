@@ -15,16 +15,19 @@
 <style lang="scss">
 header{
   height: 3rem;
+  margin:1rem;
+  z-index:1;
+  position: relative;
 }
 .header-items{
-  width: 40%;
+  width: auto;
 }
 li {
     list-style-type: none;
     display: inline-flex;
     color:$primary-color;
     font-weight: 700;
-    font-size:1.2rem;
+    font-size:1.4rem;
     text-transform: uppercase;
 
 }
