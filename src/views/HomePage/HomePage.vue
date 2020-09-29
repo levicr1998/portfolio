@@ -2,13 +2,17 @@
   <div id="home">
     <!-- Intro section -->
     <div id="intro-container" class="fluid-container">
-      <div class="row h-100 w-100">
-        <div class="col-md-3 offset-md-2 my-auto text-center">
+      <div class="row h-75">
+        <div
+          class="col-8 offset-2 col-sm-6 offset-sm-3 col-xl-3 offset-xl-2 col-md-4 offset-md-1 my-auto text-md-left text-center"
+        >
           <h1 class="intro-title">
             Welcome. I'm Levi. I'm a <b class="highlighted"> Developer.</b>
           </h1>
         </div>
-        <div class="col-md-3 offset-md-2 my-auto offset-2 col-8">
+        <div
+          class="col-8 offset-2 col-sm-6 offset-sm-3 col-xl-3 offset-md-2 col-md-4 my-auto"
+        >
           <img
             src="../../assets/img/intro-image.png"
             alt="Levi Crietee"
@@ -39,7 +43,7 @@
     <!-- Projects section -->
     <div id="projects-container" class="fluid-container">
       <div class="row">
-        <div class="col-sm-8 offset-sm-2 col-10 offset-1 pr-0">
+        <div class="col-sm-8 offset-sm-2 col-10 offset-1">
           <h2 class="title">My projects</h2>
           <project-container :project="project" />
           <button class="mx-auto">View all projects</button>
@@ -48,15 +52,15 @@
     </div>
     <!-- Contact section -->
     <div id="contact-container" class="fluid-container">
-      <div class="row ml-0">
+      <div class="row">
         <div
           class="col-xl-6 col-sm-8 offset-sm-2 col-10 offset-1 offset-xl-3 contact-box my-auto"
         >
           <h2 class="title">Contact me</h2>
           <p>Feel free to send me a message!</p>
           <button>
-            <img src="../../assets/img/icons/send.svg" alt="Send Icon" /> Get in
-            touch
+            <img src="../../assets/img/icons/send.svg" alt="Send Icon" />
+            <span class="d-inline-block">Get in touch </span>
           </button>
         </div>
       </div>
@@ -65,7 +69,7 @@
 </template>
 <style lang="scss" scoped>
 #intro-container {
-  height: calc(100vh - 3rem);
+  height: 100vh;
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -81,6 +85,16 @@
     -webkit-backface-visibility: hidden;
     z-index: -1;
   }
+
+  @media (min-width: 768px) {
+    .intro-title {
+      padding: 2rem;
+    }
+
+    .intro-image {
+      margin: 2rem;
+    }
+  }
 }
 
 #about-me-container {
@@ -89,10 +103,18 @@
   position: relative;
 
   button {
-    background-color: $tertiary-color;
-    color: $primary-color;
+    background-color: $primary-color;
+    color: $tertiary-color;
+    border: $tertiary-color solid 0.2rem;
     padding: 0.5rem 2rem;
     font-size: 1.2rem;
+    transition: 0.5s;
+
+    &:hover {
+      background-color: $tertiary-color;
+      color: $primary-color;
+      border: $primary-color solid 0.2rem;
+    }
   }
 }
 
@@ -113,6 +135,13 @@
     border: $primary-color solid 0.2rem;
     background: $tertiary-color;
     color: $primary-color;
+    transition: 0.5s;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $tertiary-color;
+      border: $tertiary-color solid 0.2rem;
+    }
   }
 
   &::before {
@@ -159,13 +188,31 @@
     button {
       background: $primary-color;
       color: $tertiary-color;
+      border: $primary-color solid 0.2rem;
+      transition: 0.4s;
       font-size: 1.2rem;
       margin: 0.5rem 2rem;
+      &:hover {
+        background: $tertiary-color;
+        color: $primary-color;
+        border: $primary-color solid 0.2rem;
+        span {
+ animation-name: movebackwards;
+        animation-fill-mode: forwards;
+        animation-duration: 0.4s;
+        }
+      }
+
+      &:hover img {
+        animation-name: moveforwards;
+        animation-fill-mode: forwards;
+        animation-duration: 0.4s;
+      }
       img {
         height: auto;
         width: 1.5rem;
         margin-bottom: 0.1rem;
-        margin-right: 0.1rem;
+        margin-right: 0.5rem;
       }
     }
   }

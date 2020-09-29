@@ -3,10 +3,10 @@
     <div class="footer-container">
         <footer>
         <ul class="icon-links mx-auto">
-            <li class="icon-link"><img src="../assets/img/icons/linkedin-icon.svg" alt="Linkedin Icon" class="icon-link-image"></li>
-            <li class="icon-link"><img src="../assets/img/icons/github-icon.svg" alt="Github Icon" class="icon-link-image"></li>
-            <li class="icon-link"><img src="../assets/img/icons/instagram-icon.svg" alt="Instagram Icon" class="icon-link-image"></li>
-            <li class="icon-link"><img src="../assets/img/icons/facebook-icon.svg" alt="Facebook Icon" class="icon-link-image"></li>
+           <a href="#"> <li class="icon-link"><img src="../assets/img/icons/linkedin-icon.svg" alt="Linkedin Icon" class="icon-link-image"></li></a>
+           <a href="#"> <li class="icon-link"><img src="../assets/img/icons/github-icon.svg" alt="Github Icon" class="icon-link-image"></li></a>
+           <a href="#"> <li class="icon-link"><img src="../assets/img/icons/instagram-icon.svg" alt="Instagram Icon" class="icon-link-image"></li></a>
+          <a href="#">  <li class="icon-link"><img src="../assets/img/icons/facebook-icon.svg" alt="Facebook Icon" class="icon-link-image"></li></a>
         </ul>
         <p>© 2020 - Levi Crietee</p>
          </footer>
@@ -22,9 +22,10 @@ padding:1rem;
     padding:0;
 li {
     padding:1rem;
+    transition: 0.3s;
     &:hover{
-        transform: translateY(-10px);
-        transition: 0.3s;
+        transform: translateY(-10px) scale(1.1);
+        
         cursor: pointer;
     }
     img {
