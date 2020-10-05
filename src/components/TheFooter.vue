@@ -23,19 +23,23 @@ padding:1rem;
 li {
     padding:1rem;
     transition: 0.3s;
+     list-style-type: none;
+     display: inline-flex;
+
     &:hover{
         transform: translateY(-10px) scale(1.1);
         
         cursor: pointer;
     }
     img {
-        width:2rem;
+        width: clamp(1.5rem, 2vw, 2rem);
         height: auto;
     }
 }
 }
   p {
         margin: 0 auto;
+        font-size: clamp(0.8rem, 2vw, 1.1rem) !important;
         color:$primary-color;
         font-weight: 200;
         width: fit-content;

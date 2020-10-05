@@ -26,7 +26,7 @@ export default {
   margin: 2rem;
 
   
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: $xl) {
  
     margin:2rem 0;
   
@@ -39,7 +39,7 @@ export default {
 }
 .skill-item {
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
-  border: $tertiary-color solid 2px;
+  border: $tertiary-color solid 0.1rem;
   border-radius: 0.5rem;
   margin: 0.2rem;
   padding: 0.1rem 0.5rem;

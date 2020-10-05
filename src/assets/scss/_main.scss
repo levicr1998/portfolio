@@ -14,13 +14,23 @@ img {
     height: auto;
 }
 
+p, div, button, span {
+    font-size:clamp(0.9rem, 1vw, 2rem) !important;
+}
+
 h2, h3, h4 {
     font-family: 'Roboto', sans-serif;
     font-weight: 900 !important;
 }
 
 h2{
-    font-size:2.5rem;
+    font-size:clamp(1.8rem, 2vw, 3rem);
+}
+
+h1{
+font-size: clamp(2rem, 2.5vw , 3.5rem);;
+font-weight: 400;
+text-align: center;
 }
 
 button{
@@ -28,6 +38,10 @@ button{
     font-weight: 600;
     border-radius: 0.2rem;
     padding:0.5rem 1.5rem;
+
+    &:focus{
+        outline: none;
+    }
 }
 
 .row {
@@ -35,23 +49,31 @@ button{
     margin-left:0 !important;
 }
 
+/* Extra Small devices (landscape phones, 576px and down) xs */
+@media (max-width: $sm) {  
+
+     
+        button {
+            padding:0.5rem 1rem !important;
+        }
+}
 /* Small devices (landscape phones, 576px and up) sm */
-@media (min-width: 576px) {  
- 
+@media (min-width: $sm) { 
+  
 }
  
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint md*/
-@media (min-width: 768px) {  
- 
+@media (min-width: $md) {  
+
 }
  
 /* Large devices (desktops, 992px and up) lg */
-@media (min-width: 992px) { 
- 
+@media (min-width: $lg) { 
+
 }
  
 /* Extra large devices (large desktops, 1200px and up) xl */
-@media (min-width: 1200px) {  
+@media (min-width: $xl) {  
     
 }
  

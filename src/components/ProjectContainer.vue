@@ -24,7 +24,7 @@
 <style lang="scss" scoped>
 .container-fluid{
     box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
-    padding:2rem;
+    padding:2rem 0.5rem;
 
     .project-title{
 color:$primary-color;
@@ -37,7 +37,7 @@ width:100%;
     }
 &::v-deep .skill-items-container .skill-item {
     color:$primary-color;
-      border: $primary-color solid 2px;
+      border: $primary-color solid 0.1rem;
       filter:none;
 }
 }
@@ -47,7 +47,7 @@ width:100%;
     width:auto;
 }
 .icon {
-    width:2rem;
+    width: clamp(1.5rem, 2vw, 1.9rem);
     height:auto;
 }
 }

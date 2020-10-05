@@ -17,7 +17,7 @@
             src="../../assets/img/intro-image.png"
             alt="Levi Crietee"
             class="img-fluid intro-image"
-          />
+         />
         </div>
       </div>
     </div>
@@ -82,11 +82,12 @@
     position: absolute;
     background: url(../../assets/img/aboutme-top-container.svg);
     background-size: cover;
+    backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     z-index: -1;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: $md) {
     .intro-title {
       padding: 2rem;
     }
@@ -105,7 +106,7 @@
   button {
     background-color: $primary-color;
     color: $tertiary-color;
-    border: $tertiary-color solid 0.2rem;
+    border: $tertiary-color solid 0.1rem;
     padding: 0.5rem 2rem;
     font-size: 1.2rem;
     transition: 0.5s;
@@ -113,13 +114,13 @@
     &:hover {
       background-color: $tertiary-color;
       color: $primary-color;
-      border: $primary-color solid 0.2rem;
+      border: $primary-color solid 0.1rem;
     }
   }
 }
 
 #projects-container {
-  padding-top: 20rem;
+  padding-top: 30rem;
   padding-bottom: 20rem;
   overflow: hidden;
   position: relative;
@@ -132,7 +133,7 @@
     display: flex;
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
-    border: $primary-color solid 0.2rem;
+    border: $primary-color solid 0.1rem;
     background: $tertiary-color;
     color: $primary-color;
     transition: 0.5s;
@@ -140,7 +141,7 @@
     &:hover {
       background-color: $primary-color;
       color: $tertiary-color;
-      border: $tertiary-color solid 0.2rem;
+      border: $tertiary-color solid 0.1rem;
     }
   }
 
@@ -155,7 +156,12 @@
     background-size: cover;
     z-index: -1;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
+
+  @media (max-width: $lg) { 
+padding-top:25rem;
+}
 }
 #contact-container {
   background: $primary-color;
@@ -186,16 +192,16 @@
     }
 
     button {
-      background: $primary-color;
-      color: $tertiary-color;
-      border: $primary-color solid 0.2rem;
+      background: $tertiary-color;
+      color: $primary-color;
+      border: $primary-color solid 0.1rem;
       transition: 0.4s;
       font-size: 1.2rem;
       margin: 0.5rem 2rem;
       &:hover {
-        background: $tertiary-color;
-        color: $primary-color;
-        border: $primary-color solid 0.2rem;
+        background: $primary-color;
+        color: $tertiary-color;
+        border: $primary-color solid 0.1rem;
         span {
  animation-name: movebackwards;
         animation-fill-mode: forwards;
