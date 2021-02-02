@@ -260,7 +260,7 @@ export default {
         ],
         thumbnail: {
         isMobile:true,
-        image:require("@/assets/img/project-picture.png"),
+        image:require("@/assets/img/project-picture.png")
         },
         image: require("@/assets/img/project-picture.png"),
       },
