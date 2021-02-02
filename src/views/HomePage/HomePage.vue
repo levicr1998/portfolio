@@ -17,14 +17,14 @@
             src="../../assets/img/intro-image.png"
             alt="Levi Crietee"
             class="img-fluid intro-image"
-         />
+          />
         </div>
       </div>
     </div>
     <!-- About me section -->
     <div id="about-me-container" class="fluid-container">
       <div class="row">
-        <div class="col-lg-5 offset-lg-1 col-8 offset-2">
+        <div class="col-lg-3 offset-lg-2 col-8 offset-2">
           <h2 class="title pt-4">About me</h2>
           <p>
             My name is Levi. I’m currently studying ICT & Software engineering.
@@ -33,7 +33,7 @@
           </p>
           <button class="my-4">Download resume</button>
         </div>
-        <div class="offset-2 col-lg-3 offset-lg-3">
+        <div class="offset-2 col-lg-3 offset-lg-4">
           <skills-container :skills="languages" skillName="Used languages" />
           <skills-container :skills="frameworks" skillName="Used frameworks" />
           <skills-container :skills="tools" skillName="Used tools" />
@@ -57,7 +57,7 @@
           class="col-xl-6 col-sm-8 offset-sm-2 col-10 offset-1 offset-xl-3 contact-box my-auto"
         >
           <h2 class="title">Contact me</h2>
-          <p>Feel free to send me a message!</p>
+          <p class="text-color">Feel free to send me a message!</p>
           <button>
             <img src="../../assets/img/icons/send.svg" alt="Send Icon" />
             <span class="d-inline-block">Get in touch </span>
@@ -71,6 +71,7 @@
 #intro-container {
   height: 100vh;
   width: 100%;
+  background-color: $tertiary-color;
   overflow: hidden;
   position: relative;
   &::after {
@@ -80,11 +81,10 @@
     bottom: -0.5%;
     left: 0;
     position: absolute;
-    background: url(../../assets/img/aboutme-top-container.svg);
+    background: url(../../assets/img/aboutme-curve-container.svg);
     background-size: cover;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    z-index: -1;
   }
 
   @media (min-width: $md) {
@@ -100,8 +100,12 @@
 
 #about-me-container {
   background: $primary-color;
-  color: $tertiary-color;
+  color: $text-color;
   position: relative;
+
+  .title {
+    color: $tertiary-color;
+  }
 
   button {
     background-color: $primary-color;
@@ -152,23 +156,25 @@
     top: -0.5%;
     left: 0;
     position: absolute;
-    background: url(../../assets/img/aboutme-bottom-container.svg);
+    background: url(../../assets/img/aboutme-curve-container.svg);
+    transform: rotate(180deg);
     background-size: cover;
-    z-index: -1;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
 
-  @media (max-width: $lg) { 
-padding-top:25rem;
-}
+  @media (max-width: $lg) {
+    padding-top: 25rem;
+  }
 }
 #contact-container {
-  background: $primary-color;
+  background-color: $primary-color;
 
   .contact-box {
     transform: translateY(-50%);
-    box-shadow: 0px 4px 10px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 35px 0 rgba(45, 156, 219, 0.2);
+    background: $primary-color;
+    padding: 4rem;
 
     & > * {
       margin: 2rem;
@@ -185,27 +191,25 @@ padding-top:25rem;
       }
     }
 
-    padding: 4rem;
-    background: $tertiary-color;
     .title {
-      color: $primary-color;
+      color: $tertiary-color;
     }
 
     button {
-      background: $tertiary-color;
-      color: $primary-color;
-      border: $primary-color solid 0.1rem;
+      background: $primary-color;
+      color: $tertiary-color;
+      border: $tertiary-color solid 0.1rem;
       transition: 0.4s;
       font-size: 1.2rem;
       margin: 0.5rem 2rem;
       &:hover {
-        background: $primary-color;
-        color: $tertiary-color;
-        border: $primary-color solid 0.1rem;
+        background: $tertiary-color;
+        color: $primary-color;
+        border: $tertiary-color solid 0.1rem;
         span {
- animation-name: movebackwards;
-        animation-fill-mode: forwards;
-        animation-duration: 0.4s;
+          animation-name: movebackwards;
+          animation-fill-mode: forwards;
+          animation-duration: 0.4s;
         }
       }
 
@@ -239,9 +243,25 @@ export default {
       tools: ["Git & GitHub", "Adobe XD", "Figma", "Postman"],
       project: {
         title: "FeedMe",
+        details: ["2019", "School project"],
+        company: "Fontys",
         description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-        skills: ["HTML", "CSS/SCSS", "Javascript", "Java", "PHP", "C#", "SQL"],
+          "FeedMe is an order webapp for restaurants with the posibility to order food in a tinder way. The app is made as an PWA to make it easy accesible on your phone.",
+        skills: [
+          "HTML",
+          "CSS",
+          "Javascript",
+          "Java",
+          "Angular",
+          "Springboot",
+          "CI/CD",
+          "PWA",
+          "SQL",
+        ],
+        thumbnail: {
+        isMobile:true,
+        image:require("@/assets/img/project-picture.png"),
+        },
         image: require("@/assets/img/project-picture.png"),
       },
     };

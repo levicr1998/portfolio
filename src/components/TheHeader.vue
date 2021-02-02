@@ -2,10 +2,10 @@
   <div class="header">
     <header>
       <ul v-bind:class="[isOpen ? 'header-items open' : 'header-items']">
-        <li class="header-item"><a href="#home">Home</a></li>
-        <li class="header-item"><a href="#about">About</a></li>
-        <li class="header-item"><a href="#projects">Projects</a></li>
-        <li class="header-item"><a href="#contact">Contact</a></li>
+        <li class="header-item"><a href="#home">HOME</a></li>
+        <li class="header-item"><a href="#about">ABOUT</a></li>
+        <li class="header-item"><a href="#projects">PROJECTS</a></li>
+        <li class="header-item"><a href="#contact">CONTACT</a></li>
       </ul>
       <button class="menu-button" v-if="isMobile" v-on:click="toggle()">
         <input type="checkbox" class="toggler" />
@@ -43,12 +43,14 @@ header {
     background: none;
   }
   .header-items {
+    margin:2rem;
     width: auto;
     color: $primary-color;
-    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
     list-style-type: none;
     display: inline-flex;
-    font-weight: 400;
+    font-weight: 700;
     transition: all 1s ease-out;
     li {
      padding:1rem;
@@ -82,7 +84,7 @@ header {
       display: flex;
       align-items: center;
       justify-content: center;
-      background:$primary-color;
+      background:$quaternary-color;
       border-radius: 50%;
       margin:0.5rem;
     }
@@ -93,7 +95,7 @@ header {
       flex: none;
       width: 100%;
       height: 2px;
-      background: $tertiary-color;
+      background: $primary-color;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -120,7 +122,7 @@ header {
     /* Toggler Animation */
     .toggler:checked + .hamburger > div {
       transform: rotate(135deg);
-      background-color: $tertiary-color;
+      background-color: $primary-color;
     }
 
     /* Turns Lines Into X */
@@ -128,13 +130,13 @@ header {
     .toggler:checked + .hamburger > div:after {
       top: 0;
       transform: rotate(90deg);
-      background-color: $tertiary-color;
+      background-color: $primary-color;
     }
 
     /* Rotate On Hover When Checked */
     .toggler:checked:hover + .hamburger > div {
       transform: rotate(225deg);
-      background-color: $tertiary-color;
+      background-color: $primary-color;
     }
 
     .toggler:checked ~ .menu > div {

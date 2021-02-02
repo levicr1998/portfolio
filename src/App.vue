@@ -25,7 +25,8 @@ export default {
 
 #app {
   font-family: 'Roboto', sans-serif;
-  color:$secondary-color;
+  color:$primary-color;
+  background-color: $tertiary-color;
   top:0;
   left:0;
   padding: 0;

@@ -14,7 +14,7 @@
 </template>
 <style lang="scss" scoped>
 .footer-container{
-    background:$footer-color;
+    background:$primary-color;
     text-align:center;
 padding:1rem;
 .icon-links{
@@ -40,7 +40,7 @@ li {
   p {
         margin: 0 auto;
         font-size: clamp(0.8rem, 2vw, 1.1rem) !important;
-        color:$primary-color;
+        color:$tertiary-color;
         font-weight: 200;
         width: fit-content;
     }
