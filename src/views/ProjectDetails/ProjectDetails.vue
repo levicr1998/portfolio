@@ -1,8 +1,15 @@
 <template>
-  <div id="home">
+  <div id="project">
     <!-- Projects section -->
     <div id="media-container" class="fluid-container">
-         <h2 class="title">Project Media</h2>
+     <router-link to="/">
+     <div class="back-button-container">
+     <img class="back-button" src="../../assets/img/icons/back-icon.svg">
+     </div> </router-link> 
+      <h2 class="title">Project Video</h2>
+      <div>
+        <video-player :videoId="project.content[0].videoId" />
+      </div>
     </div>
     <div id="project-container" class="fluid-container">
       <div class="row w-100">
@@ -44,7 +51,7 @@
                   class="project-skills-container"
                 />
 
-                    <div class="projects-links">
+                <div class="projects-links">
                   <a
                     ><img
                       src="~@/assets/img/icons/github-icon.svg"
@@ -67,19 +74,41 @@
   </div>
 </template>
 <style lang="scss" scoped>
-
 #media-container {
   height: 100vh;
   width: 100%;
   background-color: $primary-color;
   overflow: hidden;
   position: relative;
+.back-button-container{
+  background-color:$tertiary-color;
+  width:fit-content;
+  height: fit-content;
+  border-radius: 100%;
+  border: $tertiary-color solid 0.2rem;
+   margin: 2rem;
+    transition: 0.5s;
 
-.title{
-  color:$tertiary-color;
-  text-align: center;
-  margin:4rem;
+   &:hover{
+background-color:$primary-color;
+   }
+
+.back-button{
+  width: 4rem;
+  height: 4rem;
+
+  
+   &:hover{
+    filter: invert(49%) sepia(26%) saturate(1900%) hue-rotate(163deg) brightness(102%) contrast(78%);
+   }
 }
+}
+
+  .title {
+    color: $tertiary-color;
+    text-align: center;
+    margin: 2rem;
+  }
 
   &::after {
     content: "";
@@ -107,13 +136,14 @@
 
 .title {
   color: $primary-color;
+  margin-bottom: 2rem;
 }
 
 #project-container {
   box-shadow: 0 4px 35px 0 rgba(45, 156, 219, 0.2);
   padding: 2rem 0.5rem;
   background-color: $tertiary-color;
-  margin-top:-6rem;
+  margin-top: -6rem;
 
   .project-info-items-container {
     display: flex;
@@ -138,9 +168,9 @@
     }
   }
 
-.project-details-container{
+  .project-details-container {
     padding: 2rem;
-}
+  }
 
   .project-subtitle {
     color: $secondary-color;
@@ -157,7 +187,7 @@
   }
 
   .project-skills-container {
-        margin: 0;
+    margin: 0;
 
     &::v-deep .skill-items-container {
       width: 100%;
@@ -170,7 +200,7 @@
 
   .projects-links {
     float: right;
-   margin-top:4rem;
+    margin-top: 4rem;
     width: auto;
   }
   .icon {
@@ -203,9 +233,12 @@
 </style>
 <script>
 import SkillsContainer from "@/components/SkillsContainer";
+import VideoPlayer from "@/components/VideoPlayer";
+
 export default {
   components: {
     SkillsContainer,
+    VideoPlayer,
   },
   data() {
     return {
@@ -234,7 +267,11 @@ export default {
           isMobile: true,
           image: require("@/assets/img/project-picture.png"),
         },
-        image: require("@/assets/img/project-picture.png"),
+        content: [
+          {
+            videoId: "tCaEbL5fZDI",
+          },
+        ],
       },
     };
   },

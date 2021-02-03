@@ -26,26 +26,12 @@
           :skills="project.skills"
           class="project-skills-container"
         />
-         <button class="my-4"> Learn more </button>
+      <router-link :to="{ name: 'project', params: { id: 1 }}">   <button class="my-4"> Learn more </button> </router-link>
       </div>
       <div
         class="col-lg-6 col-xl-4 col-md-8 mx-md-auto pt-4 offset-xl-2 my-auto"
       >
         <img src="../assets/img/format-devices/screen-demo-feedme.svg" alt="Project image" />
-        <div class="projects-links">
-          <a
-            ><img
-              src="../assets/img/icons/github-icon.svg"
-              alt="Git hub icon"
-              class="icon"
-          /></a>
-          <a
-            ><img
-              src="../assets/img/icons/link-icon.svg"
-              alt="Project link icon"
-              class="icon"
-          /></a>
-        </div>
       </div>
     </div>
   </div>
@@ -97,11 +83,6 @@ margin:auto 0.2rem auto 0.2rem;
     &::v-deep .skill-items-container .skill-item {
       filter: none;
     }
-  }
-
-  .projects-links {
-    float: right;
-    width: auto;
   }
   .icon {
     width: clamp(1.5rem, 2vw, 1.9rem);

@@ -1,11 +1,12 @@
 <template>
   <div class="header">
     <header>
+      <img src="../assets/img/emoij-levi.svg">
       <ul v-bind:class="[isOpen ? 'header-items open' : 'header-items']">
-        <li class="header-item"><a href="#home">HOME</a></li>
-        <li class="header-item"><a href="#about">ABOUT</a></li>
-        <li class="header-item"><a href="#projects">PROJECTS</a></li>
-        <li class="header-item"><a href="#contact">CONTACT</a></li>
+        <li class="header-item"><a href="#home" v-smooth-scroll>HOME</a></li>
+        <li class="header-item"><a href="#about-me-container" v-smooth-scroll>ABOUT</a></li>
+        <li class="header-item"><a href="#projects-container" v-smooth-scroll>PROJECTS</a></li>
+        <li class="header-item"><a href="#contact-container" v-smooth-scroll>CONTACT</a></li>
       </ul>
       <button class="menu-button" v-if="isMobile" v-on:click="toggle()">
         <input type="checkbox" class="toggler" />
@@ -23,8 +24,9 @@ header {
   position: relative;
 
   img {
-    width: 2rem;
+    width: 5rem;
     height: auto;
+    margin:1.5rem;
   }
 
   a {
@@ -58,10 +60,22 @@ header {
      
   }
 
+  
+  @media (max-width: $md) {
+  img {
+      display: none;
+    }
+  }
+
   @media (max-width: $sm) {
     a {
       color: $tertiary-color;
     }
+
+    .header-items {
+margin:0;
+ }
+
     .toggler {
       position: fixed;
       top: 0;

@@ -31,7 +31,7 @@
             I like to build website’s. I’m a person who is motivated and excited
             to learn new things.
           </p>
-          <button class="my-4">Download resume</button>
+          <a href="/Curriculum_Vitae.pdf" download="Curriculum Vitae.pdf"> <button class="my-4">Download resume</button> </a>
         </div>
         <div class="offset-2 col-lg-3 offset-lg-4">
           <skills-container :skills="languages" skillName="Used languages" />
@@ -58,10 +58,12 @@
         >
           <h2 class="title">Contact me</h2>
           <p class="text-color">Feel free to send me a message!</p>
+          <a href = "mailto: levicrietee@hotmail.com">
           <button>
             <img src="../../assets/img/icons/send.svg" alt="Send Icon" />
             <span class="d-inline-block">Get in touch </span>
           </button>
+          </a>
         </div>
       </div>
     </div>
@@ -242,6 +244,7 @@ export default {
       frameworks: ["Springboot", "Angular", "Vue.js"],
       tools: ["Git & GitHub", "Adobe XD", "Figma", "Postman"],
       project: {
+        id:"1",
         title: "FeedMe",
         details: ["2019", "School project"],
         company: "Fontys",

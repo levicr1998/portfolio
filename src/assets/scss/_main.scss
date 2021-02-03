@@ -18,6 +18,11 @@ img {
     height: auto;
 }
 
+a {
+    text-decoration: none;
+    color: $primary-color;
+  }
+
 p, div, button, span {
     font-size:clamp(0.9rem, 1vw, 2rem) !important;
 }
