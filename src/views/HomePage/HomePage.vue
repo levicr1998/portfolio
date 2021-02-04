@@ -7,7 +7,8 @@
           class="col-8 offset-2 col-sm-6 offset-sm-3 col-xl-3 offset-xl-2 col-md-4 offset-md-1 my-auto text-md-left text-center"
         >
           <h1 class="intro-title">
-            Welcome. I'm Levi. I'm a <b class="highlighted"> Developer.</b>
+            Welcome. I'm Levi. I'm a <b class="highlighted"> {{ typeValue }}</b>
+            <span class="cursor" :class="{ typing: typeStatus }"> &nbsp;</span>
           </h1>
         </div>
         <div
@@ -31,7 +32,9 @@
             I like to build website’s. I’m a person who is motivated and excited
             to learn new things.
           </p>
-          <a href="/Curriculum_Vitae.pdf" download="Curriculum Vitae.pdf"> <button class="my-4">Download resume</button> </a>
+          <a href="/Curriculum_Vitae.pdf" download="Curriculum Vitae.pdf">
+            <button class="my-4">Download resume</button>
+          </a>
         </div>
         <div class="offset-2 col-lg-3 offset-lg-4">
           <skills-container :skills="languages" skillName="Used languages" />
@@ -58,11 +61,11 @@
         >
           <h2 class="title">Contact me</h2>
           <p class="text-color">Feel free to send me a message!</p>
-          <a href = "mailto: levicrietee@hotmail.com">
-          <button>
-            <img src="../../assets/img/icons/send.svg" alt="Send Icon" />
-            <span class="d-inline-block">Get in touch </span>
-          </button>
+          <a href="mailto: levicrietee@hotmail.com">
+            <button>
+              <img src="../../assets/img/icons/send.svg" alt="Send Icon" />
+              <span class="d-inline-block">Get in touch </span>
+            </button>
           </a>
         </div>
       </div>
@@ -87,6 +90,20 @@
     background-size: cover;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+  }
+
+  span.cursor {
+    display: inline-block;
+    width: 2px;
+    margin-left:0.1rem;
+    background-color: #fff;
+    animation: cursorBlink 1s infinite;
+    height: clamp(2rem, 2.5vw, 3.5rem);
+    vertical-align: middle;
+  }
+
+  span.cursor.typing {
+    animation: none;
   }
 
   @media (min-width: $md) {
@@ -240,11 +257,19 @@ export default {
   },
   data() {
     return {
+      typeValue: "",
+      typeStatus: false,
+      typeArray: ["Developer", "Motivator", "Teamplayer", "Adventurer"],
+      typingSpeed: 200,
+      erasingSpeed: 100,
+      newTextDelay: 2000,
+      typeArrayIndex: 0,
+      charIndex: 0,
       languages: ["HTML", "CSS/SCSS", "Javascript", "Java", "PHP", "C#", "SQL"],
       frameworks: ["Springboot", "Angular", "Vue.js"],
       tools: ["Git & GitHub", "Adobe XD", "Figma", "Postman"],
       project: {
-        id:"1",
+        id: "1",
         title: "FeedMe",
         details: ["2019", "School project"],
         company: "Fontys",
@@ -262,12 +287,48 @@ export default {
           "SQL",
         ],
         thumbnail: {
-        isMobile:true,
-        image:require("@/assets/img/project-picture.png")
+          isMobile: true,
+          image: require("@/assets/img/project-picture.png"),
         },
         image: require("@/assets/img/project-picture.png"),
       },
     };
   },
+  methods: {
+    typeText() {
+      if (this.charIndex < this.typeArray[this.typeArrayIndex].length) {
+        if (!this.typeStatus) this.typeStatus = true;
+
+        this.typeValue += this.typeArray[this.typeArrayIndex].charAt(this.charIndex);
+        this.charIndex += 1;
+
+        setTimeout(this.typeText, this.typingSpeed);
+      } else {
+        this.typeStatus = false;
+        setTimeout(this.eraseText, this.newTextDelay);
+      }
+    },
+    eraseText() {
+if(this.charIndex > 0){
+  if(!this.typeStatus)
+  this.typeStatus = true;
+
+this.typeValue = this.typeArray[this.typeArrayIndex].substring(0, this.charIndex - 1);
+this.charIndex -= 1;
+setTimeout(this.eraseText, this.erasingSpeed);
+
+} else {
+  this.typeStatus = false;
+  this.typeArrayIndex += 1;
+  if(this.typeArrayIndex >= this.typeArray.length)
+  this.typeArrayIndex = 0;
+
+  setTimeout(this.typeText, this.typingSpeed + 1000);
+}
+    },
+  },
+  created(){
+    setTimeout(this.typeText, this.newTextDelay + 200);
+  }
 };
 </script>
