@@ -1,14 +1,15 @@
 <template>
   <div id="project">
-    <!-- Projects section -->
+    <!-- Project section -->
     <div id="media-container" class="fluid-container">
-     <router-link to="/">
-     <div class="back-button-container">
-     <img class="back-button" src="../../assets/img/icons/back-icon.svg">
-     </div> </router-link> 
+      <router-link to="/">
+        <div class="back-button-container">
+          <img class="back-button" src="../../assets/img/icons/back-icon.svg" />
+        </div>
+      </router-link>
       <h2 class="title">Project Video</h2>
       <div>
-        <video-player :videoId="project.content[0].videoId" />
+        <video-player :videoId="project.videoId" />
       </div>
     </div>
     <div id="project-container" class="fluid-container">
@@ -22,12 +23,14 @@
                   <h3 class="project-title">
                     {{ project.title }}
                   </h3>
-                  <div
-                    class="project-info-item"
-                    v-for="detail in project.details"
-                    v-bind:key="detail"
-                  >
-                    {{ detail }}
+                  <div class="project-items-container">
+                    <div
+                      class="project-info-item"
+                      v-for="detail in project.details"
+                      v-bind:key="detail"
+                    >
+                      {{ detail }}
+                    </div>
                   </div>
                 </div>
                 <div class="project-company p-1">
@@ -43,7 +46,7 @@
                   {{ project.description }}
                 </p>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6 d-flex flex-column">
                 <h2 class="project-subtitle">Used technologies</h2>
                 <skills-container
                   :skillNameEnabled="skillNameEnabled"
@@ -53,17 +56,24 @@
 
                 <div class="projects-links">
                   <a
-                    ><img
+                    v-show="project.links.github.enabled"
+                    :href="project.links.github.link"
+                  >
+                    <img
                       src="~@/assets/img/icons/github-icon.svg"
                       alt="Git hub icon"
                       class="icon"
-                  /></a>
+                    />
+                  </a>
                   <a
+                    v-show="project.links.live.enabled"
+                    :href="project.links.live.link"
                     ><img
                       src="~@/assets/img/icons/link-icon.svg"
                       alt="Project link icon"
                       class="icon"
-                  /></a>
+                    />
+                  </a>
                 </div>
               </div>
             </div>
@@ -80,29 +90,33 @@
   background-color: $primary-color;
   overflow: hidden;
   position: relative;
-.back-button-container{
-  background-color:$tertiary-color;
-  width:fit-content;
-  height: fit-content;
-  border-radius: 100%;
-  border: $tertiary-color solid 0.2rem;
-   margin: 2rem;
+
+
+  .back-button-container {
+    background-color: $tertiary-color;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 100%;
+    border: $tertiary-color solid 0.2rem;
+    margin: 2rem;
     transition: 0.5s;
 
-   &:hover{
-background-color:$primary-color;
-   }
+    &:hover {
+      background-color: $primary-color;
+    }
 
-.back-button{
-  width: 4rem;
-  height: 4rem;
+    .back-button {
+      width: 4rem;
+      height: 4rem;
+
+      &:hover {
+        filter: invert(49%) sepia(26%) saturate(1900%) hue-rotate(163deg)
+          brightness(102%) contrast(78%);
+      }
+    }
+  }
 
   
-   &:hover{
-    filter: invert(49%) sepia(26%) saturate(1900%) hue-rotate(163deg) brightness(102%) contrast(78%);
-   }
-}
-}
 
   .title {
     color: $tertiary-color;
@@ -134,79 +148,114 @@ background-color:$primary-color;
   }
 }
 
-.title {
-  color: $primary-color;
-  margin-bottom: 2rem;
-}
-
 #project-container {
   box-shadow: 0 4px 35px 0 rgba(45, 156, 219, 0.2);
   padding: 2rem 0.5rem;
   background-color: $tertiary-color;
   margin-top: -6rem;
 
-  .project-info-items-container {
-    display: flex;
-    flex-flow: wrap;
+    @media (max-width: $sm) {
+    text-align: center;
+    padding: 1rem;
+  }
+      .icon {
+        width: clamp(1.5rem, 2vw, 1.9rem);
+        height: auto;
+      }
 
-    .project-title {
-      color: $secondary-color;
-      font-weight: 900 !important;
-      margin: 0;
-      font-size: clamp(1.8rem, 2.2vw, 3rem);
-    }
-
-    .project-info-item {
-      font-size: clamp(0.6rem, 1.5vw, 0.8rem) !important;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      color: $primary-color;
-      background-color: $tertiary-color;
-      padding: 0.3rem 0.5rem;
-      margin: auto 0.2rem auto 0.2rem;
-      height: fit-content;
-    }
+  .title {
+    color: $primary-color;
+    margin-bottom: 2rem;
   }
 
   .project-details-container {
     padding: 2rem;
-  }
+    background-color: $primary-color;
+    margin-bottom: 4rem;
 
-  .project-subtitle {
-    color: $secondary-color;
-    font-size: clamp(0.9rem, 1.5vw, 1.3rem) !important;
-  }
-  .project-description {
-    color: $text-color;
-  }
+    .project-info-items-container {
+      display: flex;
+      flex-flow: wrap;
 
-  .project-company {
-    display: flex;
-    color: $tertiary-color;
-    font-weight: 600;
-  }
+           @media (max-width: $sm) {
+          display: block;
+        }
 
-  .project-skills-container {
-    margin: 0;
+      .project-items-container {
+        display: inline-flex;
+        margin-left: 1rem;
 
-    &::v-deep .skill-items-container {
-      width: 100%;
-      margin: 0 !important;
+        @media (max-width: $sm) {
+          margin: 0.5rem auto;
+        }
+
+            .project-info-item {
+        font-size: clamp(0.6rem, 1.5vw, 0.8rem) !important;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        color: $primary-color;
+        background-color: $tertiary-color;
+        padding: 0.3rem 0.5rem;
+        margin: auto 0.2rem auto 0.2rem;
+        height: fit-content;
+      }
+      }
+
+      .project-title {
+        color: $secondary-color;
+        font-weight: 900 !important;
+        margin: 0;
+        font-size: clamp(1.8rem, 2.2vw, 3rem);
+      }
     }
-    &::v-deep .skill-items-container .skill-item {
-      filter: none;
+
+    .project-company {
+      display: flex;
+      color: $tertiary-color;
+      font-weight: 600;
+      margin:0.5rem 0;
+
+      @media (max-width: $sm) {
+        justify-content: center;
+        margin:0.5rem;
+      }
+    }
+
+    .project-subtitle {
+      color: $secondary-color;
+      font-size: clamp(0.9rem, 1.5vw, 1.3rem) !important;
+      margin:1rem 0;
+
+       @media (max-width: $sm) {
+        margin:0.5rem;
+      }
+    }
+    .project-description {
+      color: $text-color;
+    }
+
+
+    .project-skills-container {
+      margin: 0;
+
+      &::v-deep .skill-items-container {
+        width: 100%;
+        margin: 0 !important;
+      }
+      &::v-deep .skill-items-container .skill-item {
+        filter: none;
+      }
+    }
+
+    .projects-links {
+     align-items: flex-end;
+     justify-content: flex-end;
+     flex-grow: 1;
+     display: flex;
     }
   }
 
-  .projects-links {
-    float: right;
-    margin-top: 4rem;
-    width: auto;
-  }
-  .icon {
-    width: clamp(1.5rem, 2vw, 1.9rem);
-    height: auto;
-  }
+
 
   button {
     width: auto;
@@ -225,15 +274,11 @@ background-color:$primary-color;
     }
   }
 }
-
-.project-details-container {
-  background-color: $primary-color;
-  margin-bottom: 4rem;
-}
 </style>
 <script>
 import SkillsContainer from "@/components/SkillsContainer";
 import VideoPlayer from "@/components/VideoPlayer";
+import projectsJson from "../../assets/projects.json";
 
 export default {
   components: {
@@ -243,37 +288,23 @@ export default {
   data() {
     return {
       skillNameEnabled: false,
-      languages: ["HTML", "CSS/SCSS", "Javascript", "Java", "PHP", "C#", "SQL"],
-      frameworks: ["Springboot", "Angular", "Vue.js"],
-      tools: ["Git & GitHub", "Adobe XD", "Figma", "Postman"],
-      project: {
-        title: "FeedMe",
-        details: ["2019", "School project"],
-        company: "Fontys",
-        description:
-          "FeedMe is an order webapp for restaurants with the posibility to order food in a tinder way. The app is made as an PWA to make it easy accesible on your phone.",
-        skills: [
-          "HTML",
-          "CSS",
-          "Javascript",
-          "Java",
-          "Angular",
-          "Springboot",
-          "CI/CD",
-          "PWA",
-          "SQL",
-        ],
-        thumbnail: {
-          isMobile: true,
-          image: require("@/assets/img/project-picture.png"),
-        },
-        content: [
-          {
-            videoId: "tCaEbL5fZDI",
-          },
-        ],
-      },
+      project: "",
     };
+  },
+  beforeMount() {
+    var projectId = this.$route.params.id;
+    this.getProjectDetails(projectId);
+  },
+  methods: {
+    getProjectDetails(projectId) {
+      const projects = projectsJson;
+      projects.forEach((proj) => {
+        if (projectId == proj.id) {
+          console.log(proj);
+          this.project = proj;
+        }
+      });
+    },
   },
 };
 </script>

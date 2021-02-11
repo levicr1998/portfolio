@@ -4,7 +4,7 @@
       <img src="../assets/img/emoij-levi.svg">
       <ul v-bind:class="[isOpen ? 'header-items open' : 'header-items']">
         <li class="header-item"><a href="#home" v-smooth-scroll>HOME</a></li>
-        <li class="header-item"><a href="#about-me-container" v-smooth-scroll>ABOUT</a></li>
+        <li class="header-item"><a href="#about-anchor" v-smooth-scroll>ABOUT</a></li>
         <li class="header-item"><a href="#projects-container" v-smooth-scroll>PROJECTS</a></li>
         <li class="header-item"><a href="#contact-container" v-smooth-scroll>CONTACT</a></li>
       </ul>

@@ -1,7 +1,9 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VueSmoothScroll from "vue2-smooth-scroll";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import VueYoutube from 'vue-youtube'
 import router from "./router";
 
@@ -13,6 +15,11 @@ Vue.use(
 );
 
 new Vue({
+  created () {
+    AOS.init({
+      once:true
+    })
+  },
   render: h => h(App),
   router
 }).$mount('#app')

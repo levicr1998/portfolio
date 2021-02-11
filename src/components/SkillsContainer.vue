@@ -29,7 +29,6 @@ export default {
     color:$tertiary-color;
   }
   @media only screen and (max-width: $xl) {
- 
     margin:2rem 0;
   
 }
@@ -38,6 +37,11 @@ export default {
   display: flex;
   width: 80%;
   flex-flow: wrap;
+
+  @media (max-width: $sm) {
+    justify-content: center;
+    margin:1rem auto;
+           }
 }
 .skill-item {
   border: $tertiary-color solid 0.1rem;

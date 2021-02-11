@@ -1,0 +1,126 @@
+[
+    {
+        "id": "4",
+        "title": "Adly",
+        "details": ["2020", "Internship"],
+        "company": "HERE Technologies",
+        "description":
+          "During the assignment, I collected locations of advertising points in Eindhoven together with other students. We used the collection of advertising points to create an overview of all available advertising points in Eindhoven. We made this overview by entering into a design process which eventually led to the creation of the Android app 'Adly'. We then added extra functionalities to this app.",
+        "skills": [
+            "Java",
+          "Android",
+          "XML",
+          "Firebase",
+          "HERE Data Hub",
+          "HERE C&C tool",
+          "HERE SDK & API's"
+        ],
+        "thumbnail": {
+          "image": "thumbnails/thumbnail-adly.svg"
+        },
+        "videoId":"zNkLFiaqu9Q",
+        "links":{
+        "github":{
+            "enabled":true,
+            "link":"https://github.com/levicr1998/here-adly"
+        },
+        "live":{
+            "enabled":false,
+            "link":"www.test.nl"
+        }
+        }
+      },
+      {
+        "id": "3",
+        "title": "Human Flower website",
+        "details": ["2020", "Freelance"],
+        "company": "Human Flower",
+        "description":
+          "This a small informative website that is made for an individual dutch masseur. It's optimised for SEO.",
+        "skills": [
+          "HTML",
+          "SCSS",
+          "Javascript",
+          "Vue.js",
+          "SEO",
+          "Nuxt.js"
+        ],
+        "videoId":"",
+        "thumbnail": {
+          "image": "thumbnails/thumbnail-humanflower.svg"
+        },
+        "links":{
+        "github":{
+            "enabled":false,
+            "link":""
+        },
+        "live":{
+            "enabled":true,
+            "link":"https://www.humanflower.nl"
+        }
+        }
+      },
+    {
+        "id": "2",
+        "title": "Social Shift Academy",
+        "details": ["2020", "Internship"],
+        "company": "Apostle",
+        "description":
+          "Social Shift Academy is the e-learning module in the Apostle app. In this module the user has the possibility to earn badges by completing courses. A course consists of several learning objects (videos, podcasts, pdfs etc) and a final exam.",
+        "skills": [
+          "Vue.js",
+          "HTML",
+          "SCSS",
+          "Javascript",
+          "PHP",
+          "Capacitor",
+          "Symfony",
+          "SQL",
+          "Moodle"
+        ],
+        "thumbnail": {
+          "image": "thumbnails/thumbnail-socialshiftacademy.svg"
+        },
+        "links":{
+        "github":{
+            "enabled":false
+        },
+        "live":{
+            "enabled":false
+        }
+        }
+      },
+   {
+        "id": "1",
+        "title": "FeedMe",
+        "details": ["2019", "School project"],
+        "company": "Fontys",
+        "description":
+          "FeedMe is an order webapp for restaurants with the posibility to order food in a tinder way. The app is made as an PWA to make it easy accessible on your phone.",
+        "skills": [
+          "HTML",
+          "CSS",
+          "Javascript",
+          "Java",
+          "Angular",
+          "Springboot",
+          "CI/CD",
+          "PWA",
+          "SQL"
+        ],
+        "videoId":"tCaEbL5fZDI",
+        "thumbnail": {
+          "image": "thumbnails/thumbnail-feedme.svg"
+        },
+        "links":{
+        "github":{
+            "enabled":true,
+            "link":"https://github.com/levicr1998/feedme"
+        },
+        "live":{
+            "enabled":false,
+            "link":"www.test.nl"
+        }
+        }
+      }
+]

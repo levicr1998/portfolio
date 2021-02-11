@@ -5,9 +5,12 @@
       <div class="row h-75">
         <div
           class="col-8 offset-2 col-sm-6 offset-sm-3 col-xl-3 offset-xl-2 col-md-4 offset-md-1 my-auto text-md-left text-center"
+          data-aos="fade-right"
         >
           <h1 class="intro-title">
-            Welcome. I'm Levi. I'm a <b class="highlighted"> {{ typeValue }}</b>
+            Welcome, <br />
+            I'm Levi. <br />
+            I'm a <b class="highlighted"> {{ typeValue }}</b>
             <span class="cursor" :class="{ typing: typeStatus }"> &nbsp;</span>
           </h1>
         </div>
@@ -18,25 +21,41 @@
             src="../../assets/img/intro-image.png"
             alt="Levi Crietee"
             class="img-fluid intro-image"
+            data-aos="fade-left"
           />
         </div>
       </div>
     </div>
+    <div id="about-anchor"></div>
     <!-- About me section -->
     <div id="about-me-container" class="fluid-container">
       <div class="row">
-        <div class="col-lg-3 offset-lg-2 col-8 offset-2">
+        <div
+          class="col-lg-3 offset-lg-2 col-sm-8 offset-sm-2"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
           <h2 class="title pt-4">About me</h2>
           <p>
-            My name is Levi. I’m currently studying ICT & Software engineering.
-            I like to build website’s. I’m a person who is motivated and excited
-            to learn new things.
+            Hi, my name is Levi Crietee. I’m a passionated ICT & Software
+            Engineering student at Fontys. <br />
+            <br />
+            I like to learn new things and challenge myself by working with new
+            advanced technologies. <br />
+            <br />
+            I’m a motivated and positive person. I like to work in a team and
+            improve myself daily by the feedback of my team members and new
+            things I learned that day.
           </p>
           <a href="/Curriculum_Vitae.pdf" download="Curriculum Vitae.pdf">
             <button class="my-4">Download resume</button>
           </a>
         </div>
-        <div class="offset-2 col-lg-3 offset-lg-4">
+        <div
+          class="offset-sm-2 col-lg-3 offset-lg-4"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+        >
           <skills-container :skills="languages" skillName="Used languages" />
           <skills-container :skills="frameworks" skillName="Used frameworks" />
           <skills-container :skills="tools" skillName="Used tools" />
@@ -48,14 +67,27 @@
       <div class="row">
         <div class="col-sm-8 offset-sm-2 col-10 offset-1">
           <h2 class="title">My projects</h2>
-          <project-container :project="project" />
-          <button class="mx-auto">View all projects</button>
+          <div v-for="project in projectsToLoad" v-bind:key="project.id">
+            <project-container
+              :project="project"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-mirror="true"
+            />
+          </div>
+          <button class="mx-auto" data-aos="fade-left" data-aos-duration="1000" @click="toggleLoadProjects()">
+            <div v-if="this.isLoading">
+              <img  class="button-loading" src="../../assets/img/icons/three-dots-loading.svg" />
+            </div>
+            <div v-else> {{loadedMoreProjects ===false? "Show all projects" : "Show less"}}
+            </div>
+          </button>
         </div>
       </div>
     </div>
     <!-- Contact section -->
     <div id="contact-container" class="fluid-container">
-      <div class="row">
+      <div class="row" data-aos="zoom-in" data-aos-duration="1000">
         <div
           class="col-xl-6 col-sm-8 offset-sm-2 col-10 offset-1 offset-xl-3 contact-box my-auto"
         >
@@ -95,7 +127,7 @@
   span.cursor {
     display: inline-block;
     width: 2px;
-    margin-left:0.1rem;
+    margin-left: 0.1rem;
     background-color: #fff;
     animation: cursorBlink 1s infinite;
     height: clamp(2rem, 2.5vw, 3.5rem);
@@ -116,11 +148,19 @@
     }
   }
 }
-
+#about-anchor {
+  padding-top: 0vh;
+}
 #about-me-container {
   background: $primary-color;
   color: $text-color;
   position: relative;
+  scroll-margin-top: 10rem;
+
+  @media (max-width: $sm) {
+    padding: 1rem;
+    text-align: center;
+  }
 
   .title {
     color: $tertiary-color;
@@ -148,6 +188,11 @@
   overflow: hidden;
   position: relative;
 
+  @media (max-width: $sm) {
+    text-align: center;
+    padding-top: 20rem;
+  }
+
   .title {
     color: $primary-color;
   }
@@ -161,7 +206,16 @@
     color: $primary-color;
     transition: 0.5s;
 
-    &:hover {
+    div p {
+      margin:0;
+    }
+
+    .button-loading{
+      width: 30%;
+      height: auto;
+    }
+
+    &:hover, &:active, &:focus{
       background-color: $primary-color;
       color: $tertiary-color;
       border: $tertiary-color solid 0.1rem;
@@ -188,6 +242,10 @@
 }
 #contact-container {
   background-color: $primary-color;
+
+  @media (max-width: $sm) {
+    text-align: center;
+  }
 
   .contact-box {
     transform: translateY(-50%);
@@ -248,6 +306,7 @@
 }
 </style>
 <script>
+import projects from "../../assets/projects.json";
 import SkillsContainer from "@/components/SkillsContainer.vue";
 import ProjectContainer from "@/components/ProjectContainer.vue";
 export default {
@@ -257,7 +316,10 @@ export default {
   },
   data() {
     return {
-      typeValue: "",
+      isLoading: false,
+      loadedMoreProjects: false,
+      projects: projects,
+      typeValue: "Developer",
       typeStatus: false,
       typeArray: ["Developer", "Motivator", "Teamplayer", "Adventurer"],
       typingSpeed: 200,
@@ -266,40 +328,43 @@ export default {
       typeArrayIndex: 0,
       charIndex: 0,
       languages: ["HTML", "CSS/SCSS", "Javascript", "Java", "PHP", "C#", "SQL"],
-      frameworks: ["Springboot", "Angular", "Vue.js"],
-      tools: ["Git & GitHub", "Adobe XD", "Figma", "Postman"],
-      project: {
-        id: "1",
-        title: "FeedMe",
-        details: ["2019", "School project"],
-        company: "Fontys",
-        description:
-          "FeedMe is an order webapp for restaurants with the posibility to order food in a tinder way. The app is made as an PWA to make it easy accesible on your phone.",
-        skills: [
-          "HTML",
-          "CSS",
-          "Javascript",
-          "Java",
-          "Angular",
-          "Springboot",
-          "CI/CD",
-          "PWA",
-          "SQL",
-        ],
-        thumbnail: {
-          isMobile: true,
-          image: require("@/assets/img/project-picture.png"),
-        },
-        image: require("@/assets/img/project-picture.png"),
-      },
+      frameworks: ["Springboot", "Angular", "Vue.js", "Symfony", "Capacitor"],
+      tools: [
+        "Git & GitHub",
+        "Adobe XD",
+        "Figma",
+        "Postman",
+        "DevOps",
+        "Trello",
+      ],
     };
   },
+   computed: {
+    projectsToLoad: function() {
+      if (!this.loadedMoreProjects) {
+        return this.projects.slice(0, 3);
+      } else {
+        return this.projects;
+      }
+    }
+  },
   methods: {
+    toggleLoadProjects(){
+      this.isLoading = true;
+      setTimeout(() => {
+      this.isLoading = false;
+      }, 200)
+      setTimeout(() => {
+      this.loadedMoreProjects = !this.loadedMoreProjects;
+      }, 200)
+    },
     typeText() {
       if (this.charIndex < this.typeArray[this.typeArrayIndex].length) {
         if (!this.typeStatus) this.typeStatus = true;
 
-        this.typeValue += this.typeArray[this.typeArrayIndex].charAt(this.charIndex);
+        this.typeValue += this.typeArray[this.typeArrayIndex].charAt(
+          this.charIndex
+        );
         this.charIndex += 1;
 
         setTimeout(this.typeText, this.typingSpeed);
@@ -309,26 +374,28 @@ export default {
       }
     },
     eraseText() {
-if(this.charIndex > 0){
-  if(!this.typeStatus)
-  this.typeStatus = true;
+      if (this.charIndex > 0) {
+        if (!this.typeStatus) this.typeStatus = true;
 
-this.typeValue = this.typeArray[this.typeArrayIndex].substring(0, this.charIndex - 1);
-this.charIndex -= 1;
-setTimeout(this.eraseText, this.erasingSpeed);
+        this.typeValue = this.typeArray[this.typeArrayIndex].substring(
+          0,
+          this.charIndex - 1
+        );
+        this.charIndex -= 1;
+        setTimeout(this.eraseText, this.erasingSpeed);
+      } else {
+        this.typeStatus = false;
+        this.typeArrayIndex += 1;
+        if (this.typeArrayIndex >= this.typeArray.length)
+          this.typeArrayIndex = 0;
 
-} else {
-  this.typeStatus = false;
-  this.typeArrayIndex += 1;
-  if(this.typeArrayIndex >= this.typeArray.length)
-  this.typeArrayIndex = 0;
-
-  setTimeout(this.typeText, this.typingSpeed + 1000);
-}
+        setTimeout(this.typeText, this.typingSpeed + 1000);
+      }
     },
   },
-  created(){
+  created() {
+    this.charIndex = 9;
     setTimeout(this.typeText, this.newTextDelay + 200);
-  }
+  },
 };
 </script>
