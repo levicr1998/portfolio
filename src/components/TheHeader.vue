@@ -1,19 +1,25 @@
 <template>
   <div class="header">
     <header>
-      <img src="../assets/img/emoij-levi.svg" />
+      <img   data-aos="fade-in"
+              data-aos-duration="1000" src="../assets/img/emoij-levi.svg" />
       <ul v-bind:class="[isOpen ? 'header-items open' : 'header-items']">
-        <li @click="toggle(true)" class="header-item">
-          <a href="#home" v-smooth-scroll>HOME</a>
+        <li data-aos="fade-in"
+        data-aos-delay="400"
+             @click="toggle(true); scrollToId('home');" class="header-item">
+          <router-link to="#home" >HOME</router-link>
         </li>
-        <li @click="toggle(true)" class="header-item">
-          <a href="#about-anchor" v-smooth-scroll>ABOUT</a>
+        <li data-aos="fade-in"
+              data-aos-delay="500" @click="toggle(true); scrollToId('about-me-container');" class="header-item">
+          <router-link to="#about-me-container">ABOUT</router-link>
         </li>
-        <li @click="toggle(true)" class="header-item">
-          <a href="#projects-container" v-smooth-scroll>PROJECTS</a>
+        <li data-aos="fade-in"
+              data-aos-delay="600" @click="toggle(true); scrollToId('projects-container');" class="header-item">
+          <router-link to="#projects-container">PROJECTS</router-link>
         </li>
-        <li @click="toggle(true)" class="header-item">
-          <a href="#contact-container" v-smooth-scroll>CONTACT</a>
+        <li data-aos="fade-in"
+              data-aos-delay="700" @click="toggle(true); scrollToId('contact-container');" class="header-item">
+          <router-link to="#contact-container">CONTACT </router-link>
         </li>
       </ul>
       <button class="menu-button" v-if="isMobile" v-on:click="toggle(false)">
@@ -215,10 +221,13 @@ export default {
   methods: {
     toggle(statusChangeChecked) {
       this.isOpen = !this.isOpen;
-      if (statusChangeChecked) {
+      if (statusChangeChecked && this.isMobile) {
         document.getElementById("toggler").checked = false;
       }
     },
+      scrollToId(id) {
+    document.getElementById(id).scrollIntoView({behavior: "smooth"});
+  },
     checkMobileView() {
       this.isMobile = screen.width < 576 ? true : false;
     },

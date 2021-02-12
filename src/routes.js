@@ -9,4 +9,5 @@ export const routes = [
     name: "project",
     component: () => import("./views/ProjectDetails/ProjectDetails.vue"),
   },
+  { path: '/:pathMatch(.*)*', name:'not-found', component: () => import('./views/NotFound/NotFound.vue')},
 ];

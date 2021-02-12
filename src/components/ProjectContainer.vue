@@ -33,7 +33,7 @@
           class="project-skills-container"
         />
         <router-link :to="{ name: 'project', params: { id: project.id } }">
-          <button class="my-4">Learn more</button>
+          <button @click="scrollToTop()"  class="my-4">Learn more</button>
         </router-link>
       </div>
       <div
@@ -60,9 +60,13 @@
   img {
     height: fit-content;
     object-fit: contain;
- 
+
     @media (max-width: $sm) {
       max-height: 12rem;
+    }
+
+        @media (max-width: $lg) {
+      max-height: 14rem;
     }
   }
 
@@ -169,6 +173,12 @@ export default {
     return {
       skillNameEnabled: false,
     };
+  },
+  methods: {
+    scrollToTop() {
+      console.log("werkt")
+      window.scrollTo(0, 0);
+    },
   },
 };
 </script>

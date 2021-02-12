@@ -3,20 +3,27 @@
     <!-- Project section -->
     <div id="media-container" class="fluid-container">
       <router-link to="/">
-        <div class="back-button-container">
-          <img class="back-button" src="../../assets/img/icons/back-icon.svg" />
+        <div class="back-button-container" data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="500">
+          <img class="back-button" src="../../assets/img/icons/back-icon.svg" 
+             />
         </div>
       </router-link>
-      <h2 class="title">Project Video</h2>
+      <h2 class="title" data-aos="fade-left"
+      data-aos-delay="500"
+            data-aos-duration="1000">Project Video</h2>
       <div>
-        <video-player :videoId="project.videoId" />
+        <video-player data-aos="fade-left" data-aos-delay="500"
+            data-aos-duration="1000" :videoId="project.videoId" />
       </div>
     </div>
     <div id="project-container" class="fluid-container">
       <div class="row w-100">
         <div class="col-md-8 offset-md-2">
-          <h2 class="title">Project Details</h2>
-          <div class="project-details-container fluid-container mx-auto">
+          <h2 class="title" data-aos="fade-in"
+            data-aos-duration="1000">Project Details</h2>
+          <div class="project-details-container fluid-container mx-auto"  data-aos="fade-in" data-aos-duration="1000">
             <div class="row">
               <div class="col-lg-6">
                 <div class="project-info-items-container">
@@ -110,9 +117,21 @@
       background-color: $primary-color;
     }
 
+        @media (max-width: $sm) {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 1rem;
+    }
+
     .back-button {
       width: 4rem;
       height: 4rem;
+
+           @media (max-width: $sm) {
+      width: 2rem;
+      height: 2rem;
+  
+    }
 
       &:hover {
         filter: invert(49%) sepia(26%) saturate(1900%) hue-rotate(163deg)

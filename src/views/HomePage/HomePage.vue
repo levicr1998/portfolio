@@ -6,6 +6,8 @@
         <div
           class="col-8 offset-2 col-sm-6 offset-sm-3 col-xl-3 offset-xl-2 col-md-4 offset-md-1 my-auto text-md-left text-center"
           data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="500"
         >
           <h1 class="intro-title">
             Welcome, <br />
@@ -22,11 +24,12 @@
             alt="Levi Crietee"
             class="img-fluid intro-image"
             data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="500"
           />
         </div>
       </div>
     </div>
-    <div id="about-anchor"></div>
     <!-- About me section -->
     <div id="about-me-container" class="fluid-container">
       <div class="row">
@@ -66,7 +69,14 @@
     <div id="projects-container" class="fluid-container">
       <div class="row">
         <div class="col-sm-8 offset-sm-2 col-10 offset-1">
-          <h2 class="title">My projects</h2>
+          <h2
+            class="title"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-mirror="true"
+          >
+            My projects
+          </h2>
           <div v-for="project in projectsToLoad" v-bind:key="project.id">
             <project-container
               :project="project"
@@ -75,11 +85,22 @@
               data-aos-mirror="true"
             />
           </div>
-          <button class="mx-auto" data-aos="fade-left" data-aos-duration="1000" @click="toggleLoadProjects()">
+          <button
+            class="mx-auto"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            @click="toggleLoadProjects()"
+          >
             <div v-if="this.isLoading">
-              <img  class="button-loading" src="../../assets/img/icons/three-dots-loading.svg" />
+              <img
+                class="button-loading"
+                src="../../assets/img/icons/three-dots-loading.svg"
+              />
             </div>
-            <div v-else> {{loadedMoreProjects ===false? "Show all projects" : "Show less"}}
+            <div v-else>
+              {{
+                loadedMoreProjects === false ? "Show all projects" : "Show less"
+              }}
             </div>
           </button>
         </div>
@@ -207,15 +228,17 @@
     transition: 0.5s;
 
     div p {
-      margin:0;
+      margin: 0;
     }
 
-    .button-loading{
+    .button-loading {
       width: 30%;
       height: auto;
     }
 
-    &:hover, &:active, &:focus{
+    &:hover,
+    &:active,
+    &:focus {
       background-color: $primary-color;
       color: $tertiary-color;
       border: $tertiary-color solid 0.1rem;
@@ -324,7 +347,7 @@ export default {
       typeArray: ["Developer", "Motivator", "Teamplayer", "Adventurer"],
       typingSpeed: 200,
       erasingSpeed: 100,
-      newTextDelay: 2000,
+      newTextDelay: 1000,
       typeArrayIndex: 0,
       charIndex: 0,
       languages: ["HTML", "CSS/SCSS", "Javascript", "Java", "PHP", "C#", "SQL"],
@@ -339,24 +362,24 @@ export default {
       ],
     };
   },
-   computed: {
-    projectsToLoad: function() {
+  computed: {
+    projectsToLoad: function () {
       if (!this.loadedMoreProjects) {
         return this.projects.slice(0, 3);
       } else {
         return this.projects;
       }
-    }
+    },
   },
   methods: {
-    toggleLoadProjects(){
+    toggleLoadProjects() {
       this.isLoading = true;
       setTimeout(() => {
-      this.isLoading = false;
-      }, 200)
+        this.isLoading = false;
+      }, 200);
       setTimeout(() => {
-      this.loadedMoreProjects = !this.loadedMoreProjects;
-      }, 200)
+        this.loadedMoreProjects = !this.loadedMoreProjects;
+      }, 200);
     },
     typeText() {
       if (this.charIndex < this.typeArray[this.typeArrayIndex].length) {
