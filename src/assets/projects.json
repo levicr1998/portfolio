@@ -16,7 +16,7 @@
           "HERE SDK & API's"
         ],
         "thumbnail": {
-          "image": "thumbnails/thumbnail-adly.svg"
+          "image": "thumbnails/thumbnail-adly.png"
         },
         "videoId":"zNkLFiaqu9Q",
         "links":{
@@ -47,7 +47,7 @@
         ],
         "videoId":"",
         "thumbnail": {
-          "image": "thumbnails/thumbnail-humanflower.svg"
+          "image": "thumbnails/thumbnail-humanflower.png"
         },
         "links":{
         "github":{
@@ -79,7 +79,7 @@
           "Moodle"
         ],
         "thumbnail": {
-          "image": "thumbnails/thumbnail-socialshiftacademy.svg"
+          "image": "thumbnails/thumbnail-socialshiftacademy.png"
         },
         "links":{
         "github":{
@@ -110,7 +110,7 @@
         ],
         "videoId":"tCaEbL5fZDI",
         "thumbnail": {
-          "image": "thumbnails/thumbnail-feedme.svg"
+          "image": "thumbnails/thumbnail-feedme.png"
         },
         "links":{
         "github":{

@@ -1,15 +1,23 @@
 <template>
   <div class="header">
     <header>
-      <img src="../assets/img/emoij-levi.svg">
+      <img src="../assets/img/emoij-levi.svg" />
       <ul v-bind:class="[isOpen ? 'header-items open' : 'header-items']">
-        <li class="header-item"><a href="#home" v-smooth-scroll>HOME</a></li>
-        <li class="header-item"><a href="#about-anchor" v-smooth-scroll>ABOUT</a></li>
-        <li class="header-item"><a href="#projects-container" v-smooth-scroll>PROJECTS</a></li>
-        <li class="header-item"><a href="#contact-container" v-smooth-scroll>CONTACT</a></li>
+        <li @click="toggle(true)" class="header-item">
+          <a href="#home" v-smooth-scroll>HOME</a>
+        </li>
+        <li @click="toggle(true)" class="header-item">
+          <a href="#about-anchor" v-smooth-scroll>ABOUT</a>
+        </li>
+        <li @click="toggle(true)" class="header-item">
+          <a href="#projects-container" v-smooth-scroll>PROJECTS</a>
+        </li>
+        <li @click="toggle(true)" class="header-item">
+          <a href="#contact-container" v-smooth-scroll>CONTACT</a>
+        </li>
       </ul>
-      <button class="menu-button" v-if="isMobile" v-on:click="toggle()">
-        <input type="checkbox" class="toggler" />
+      <button class="menu-button" v-if="isMobile" v-on:click="toggle(false)">
+        <input type="checkbox" id="toggler" class="toggler" />
         <div class="hamburger"><div></div></div>
       </button>
     </header>
@@ -26,7 +34,7 @@ header {
   img {
     width: 5rem;
     height: auto;
-    margin:1.5rem;
+    margin: 1.5rem;
   }
 
   a {
@@ -45,24 +53,23 @@ header {
     background: none;
   }
   .header-items {
-    margin:2rem;
+    margin: 2rem;
     width: auto;
     color: $primary-color;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: clamp(1.2rem, 2vw, 1.4rem);
     list-style-type: none;
     display: inline-flex;
     font-weight: 700;
     transition: all 1s ease-out;
     li {
-     padding:1rem;
+      padding: 1rem;
     }
-     
   }
 
-  
   @media (max-width: $md) {
-  img {
+    img {
       display: none;
     }
   }
@@ -73,8 +80,8 @@ header {
     }
 
     .header-items {
-margin:0;
- }
+      margin: 0;
+    }
 
     .toggler {
       position: fixed;
@@ -98,9 +105,9 @@ margin:0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background:$quaternary-color;
+      background: $quaternary-color;
       border-radius: 50%;
-      margin:0.5rem;
+      margin: 0.5rem;
     }
 
     /* Hamburger Line */
@@ -167,33 +174,29 @@ margin:0;
       height: 100vh;
     }
 
-      .header-items {
-    background: $primary-color;
-    color: $tertiary-color;
-    align-items: center;
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    flex-direction: column;
-         clip-path: circle(10px at 90% -10%);
-    -webkit-clip-path: circle(10px at 90% -10%);
-    padding:2rem;
+    .header-items {
+      background: $primary-color;
+      color: $tertiary-color;
+      align-items: center;
+      position: fixed;
+      height: 100vh;
+      width: 100%;
+      flex-direction: column;
+      clip-path: circle(10px at 90% -10%);
+      -webkit-clip-path: circle(10px at 90% -10%);
+      padding: 2rem;
 
-    li {
-      padding:1rem;
+      li {
+        padding: 1rem;
+      }
     }
-   
+
+    .header-items.open {
+      clip-path: circle(1000px at 90% -10px);
+      -webkit-clip-path: circle(1000px at 90% -10px);
+      z-index: 2;
+    }
   }
-
-   .header-items.open {
-    clip-path: circle(1000px at 90% -10px);
-    -webkit-clip-path: circle(1000px at 90% -10px);
-    z-index: 2;
-  }
-  }
-
-
-
 }
 </style>
 
@@ -210,11 +213,13 @@ export default {
     window.addEventListener("resize", this.checkMobileView);
   },
   methods: {
-    toggle() {
+    toggle(statusChangeChecked) {
       this.isOpen = !this.isOpen;
+      if (statusChangeChecked) {
+        document.getElementById("toggler").checked = false;
+      }
     },
     checkMobileView() {
-      console.log(screen.width);
       this.isMobile = screen.width < 576 ? true : false;
     },
   },

@@ -32,7 +32,7 @@
       <div class="row">
         <div
           class="col-lg-3 offset-lg-2 col-sm-8 offset-sm-2"
-          data-aos="fade-left"
+          data-aos="zoom-in"
           data-aos-duration="1000"
         >
           <h2 class="title pt-4">About me</h2>
@@ -53,7 +53,7 @@
         </div>
         <div
           class="offset-sm-2 col-lg-3 offset-lg-4"
-          data-aos="fade-right"
+          data-aos="zoom-in"
           data-aos-duration="1000"
         >
           <skills-container :skills="languages" skillName="Used languages" />
@@ -190,7 +190,7 @@
 
   @media (max-width: $sm) {
     text-align: center;
-    padding-top: 20rem;
+    padding-top: 20rem !important;
   }
 
   .title {

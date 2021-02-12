@@ -5,7 +5,7 @@ export const routes = [
     component: () => import("./views/HomePage/HomePage.vue"),
   },
   {
-    path: "/project/{id}",
+    path: "/project/:id",
     name: "project",
     component: () => import("./views/ProjectDetails/ProjectDetails.vue"),
   },

@@ -46,7 +46,7 @@
                   {{ project.description }}
                 </p>
               </div>
-              <div class="col-lg-6 d-flex flex-column">
+              <div class="col-lg-6 d-flex flex-column p-0 p-md-2">
                 <h2 class="project-subtitle">Used technologies</h2>
                 <skills-container
                   :skillNameEnabled="skillNameEnabled"
@@ -90,6 +90,11 @@
   background-color: $primary-color;
   overflow: hidden;
   position: relative;
+
+    @media (max-width: $sm) {
+    height: 50rem;
+  
+    }
 
 
   .back-button-container {
@@ -300,7 +305,6 @@ export default {
       const projects = projectsJson;
       projects.forEach((proj) => {
         if (projectId == proj.id) {
-          console.log(proj);
           this.project = proj;
         }
       });

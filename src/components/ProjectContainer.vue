@@ -59,8 +59,10 @@
 
   img {
     height: fit-content;
+    object-fit: contain;
+ 
     @media (max-width: $sm) {
-      height: 12rem;
+      max-height: 12rem;
     }
   }
 
