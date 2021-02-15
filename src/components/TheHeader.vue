@@ -1,24 +1,54 @@
 <template>
   <div class="header">
     <header>
-      <img   data-aos="fade-in"
-              data-aos-duration="1000" src="../assets/img/emoij-levi.svg" />
+      <img
+        data-aos="fade-in"
+        data-aos-duration="1000"
+        src="../assets/img/emoij-levi.svg"
+      />
       <ul v-bind:class="[isOpen ? 'header-items open' : 'header-items']">
-        <li data-aos="fade-in"
-        data-aos-delay="400"
-             @click="toggle(true); scrollToId('home');" class="header-item">
-          <router-link to="#home" >HOME</router-link>
+        <li
+          data-aos="fade-in"
+          data-aos-delay="400"
+          @click="
+            toggle(true);
+            scrollToId('home');
+          "
+          class="header-item"
+        >
+          <router-link to="#home">HOME</router-link>
         </li>
-        <li data-aos="fade-in"
-              data-aos-delay="500" @click="toggle(true); scrollToId('about-me-container');" class="header-item">
+        <li
+          data-aos="fade-in"
+          data-aos-delay="500"
+          @click="
+            toggle(true);
+            scrollToId('about-me-container');
+          "
+          class="header-item"
+        >
           <router-link to="#about-me-container">ABOUT</router-link>
         </li>
-        <li data-aos="fade-in"
-              data-aos-delay="600" @click="toggle(true); scrollToId('projects-container');" class="header-item">
+        <li
+          data-aos="fade-in"
+          data-aos-delay="600"
+          @click="
+            toggle(true);
+            scrollToId('projects-container');
+          "
+          class="header-item"
+        >
           <router-link to="#projects-container">PROJECTS</router-link>
         </li>
-        <li data-aos="fade-in"
-              data-aos-delay="700" @click="toggle(true); scrollToId('contact-container');" class="header-item">
+        <li
+          data-aos="fade-in"
+          data-aos-delay="700"
+          @click="
+            toggle(true);
+            scrollToId('contact-container');
+          "
+          class="header-item"
+        >
           <router-link to="#contact-container">CONTACT </router-link>
         </li>
       </ul>
@@ -225,9 +255,17 @@ export default {
         document.getElementById("toggler").checked = false;
       }
     },
-      scrollToId(id) {
-    document.getElementById(id).scrollIntoView({behavior: "smooth"});
-  },
+    scrollToId(id) {
+      if (id == "projects-container") {
+        const yOffset = 250;
+        const element = document.getElementById(id);
+        const y =
+          element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      } else {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      }
+    },
     checkMobileView() {
       this.isMobile = screen.width < 576 ? true : false;
     },

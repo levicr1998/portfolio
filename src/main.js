@@ -13,9 +13,9 @@ Vue.use(
 );
 
 new Vue({
-  created () {
+  created() {
     AOS.init({
-      once:true
+      once: true
     })
   },
   render: h => h(App),

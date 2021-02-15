@@ -2,7 +2,7 @@
   <div id="app">
     <div v-if="!isLoaded" class="loading-background">
       <div class="loading-container">
-      <loader></loader>
+        <loader></loader>
       </div>
     </div>
     <div v-else>
@@ -27,20 +27,20 @@ export default {
   components: {
     TheHeader,
     TheFooter,
-    Loader
+    Loader,
   },
-  data(){
+  data() {
     return {
-      isLoaded:false
+      isLoaded: false,
     };
   },
-  mounted(){
+  mounted() {
     this.loadingView();
   },
   methods: {
     loadingView() {
       setTimeout(() => {
-     this.isLoaded = true;
+        this.isLoaded = true;
       }, 1000);
     },
   },
@@ -61,7 +61,7 @@ export default {
 .loading-background {
   height: 100vh;
 
-  .loading-container{
+  .loading-container {
     display: flex;
     align-items: center;
     height: 100%;

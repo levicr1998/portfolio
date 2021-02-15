@@ -33,7 +33,7 @@
           class="project-skills-container"
         />
         <router-link :to="{ name: 'project', params: { id: project.id } }">
-          <button @click="scrollToTop()"  class="my-4">Learn more</button>
+          <button @click="scrollToTop()" class="my-4">Learn more</button>
         </router-link>
       </div>
       <div
@@ -65,7 +65,7 @@
       max-height: 12rem;
     }
 
-        @media (max-width: $lg) {
+    @media (max-width: $lg) {
       max-height: 14rem;
     }
   }
@@ -176,7 +176,7 @@ export default {
   },
   methods: {
     scrollToTop() {
-      console.log("werkt")
+      console.log("werkt");
       window.scrollTo(0, 0);
     },
   },

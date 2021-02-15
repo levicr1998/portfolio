@@ -26,7 +26,7 @@
             data-aos="fade-left"
             data-aos-duration="1000"
             data-aos-delay="500"
-          />
+            data-aos-anchor-placement="top-bottom">
         </div>
       </div>
     </div>
@@ -126,12 +126,21 @@
   </div>
 </template>
 <style lang="scss" scoped>
+#app {
+  background-color:$tertiary-color;
+}
+
 #intro-container {
   height: 100vh;
   width: 100%;
   background-color: $tertiary-color;
   overflow: hidden;
   position: relative;
+
+    @media (max-height: $max-height-phone) {
+ height:160vh;
+    }
+
   &::after {
     content: "";
     width: 100%;

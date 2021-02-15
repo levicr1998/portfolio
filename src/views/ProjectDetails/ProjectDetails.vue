@@ -1,29 +1,47 @@
 <template>
   <div id="project">
     <!-- Project section -->
-    <div id="media-container" class="fluid-container">
-      <router-link to="/">
-        <div class="back-button-container" data-aos="fade-right"
-            data-aos-duration="1000"
-            data-aos-delay="500">
-          <img class="back-button" src="../../assets/img/icons/back-icon.svg" 
-             />
-        </div>
-      </router-link>
-      <h2 class="title" data-aos="fade-left"
-      data-aos-delay="500"
-            data-aos-duration="1000">Project Video</h2>
+    <router-link to="/">
+      <div
+        class="back-button-container"
+        data-aos="fade-right"
+        data-aos-duration="1000"
+        data-aos-delay="500"
+      >
+        <img class="back-button" src="../../assets/img/icons/back-icon.svg" />
+      </div>
+    </router-link>
+    <div id="media-container" class="fluid-container video-container-height"   :class="{ 'no-video-container-height': !project.demoVideoEnabled }" >
+      <h2
+        class="title"
+        data-aos="fade-left"
+        data-aos-delay="500"
+        data-aos-duration="1000"
+        v-if="project.demoVideoEnabled"
+      >
+        Project Video
+      </h2>
       <div>
-        <video-player data-aos="fade-left" data-aos-delay="500"
-            data-aos-duration="1000" :videoId="project.videoId" />
+        <video-player
+          data-aos="fade-left"
+          data-aos-delay="500"
+          data-aos-duration="1000"
+          :videoId="project.videoId"
+          v-if="project.demoVideoEnabled"
+        />
       </div>
     </div>
     <div id="project-container" class="fluid-container">
       <div class="row w-100">
         <div class="col-md-8 offset-md-2">
-          <h2 class="title" data-aos="fade-in"
-            data-aos-duration="1000">Project Details</h2>
-          <div class="project-details-container fluid-container mx-auto"  data-aos="fade-in" data-aos-duration="1000">
+          <h2 class="title" data-aos="fade-in" data-aos-duration="1000">
+            Project Details
+          </h2>
+          <div
+            class="project-details-container fluid-container mx-auto"
+            data-aos="fade-in"
+            data-aos-duration="1000"
+          >
             <div class="row">
               <div class="col-lg-6">
                 <div class="project-info-items-container">
@@ -91,18 +109,11 @@
   </div>
 </template>
 <style lang="scss" scoped>
-#media-container {
-  height: 100vh;
-  width: 100%;
-  background-color: $primary-color;
-  overflow: hidden;
-  position: relative;
-
-    @media (max-width: $sm) {
-    height: 50rem;
-  
-    }
-
+#app {
+  background-color:$primary-color;
+}
+#project {
+  background: $primary-color;
 
   .back-button-container {
     background-color: $tertiary-color;
@@ -117,21 +128,13 @@
       background-color: $primary-color;
     }
 
-        @media (max-width: $sm) {
-    width: 2.5rem;
-    height: 2.5rem;
-    margin: 1rem;
+    @media (max-width: $sm) {
+      margin: 0.5rem;
     }
 
     .back-button {
-      width: 4rem;
-      height: 4rem;
-
-           @media (max-width: $sm) {
-      width: 2rem;
-      height: 2rem;
-  
-    }
+      width: 60px;
+      height: 60px;
 
       &:hover {
         filter: invert(49%) sepia(26%) saturate(1900%) hue-rotate(163deg)
@@ -140,161 +143,191 @@
     }
   }
 
-  
+  .video-container-height {
+    height: 100vh;
 
-  .title {
-    color: $tertiary-color;
-    text-align: center;
-    margin: 2rem;
-  }
-
-  &::after {
-    content: "";
-    width: 100%;
-    height: 40vh;
-    bottom: -0.5%;
-    left: 0;
-    position: absolute;
-    background: url(../../assets/img/project-details-container.svg);
-    background-size: cover;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-
-  @media (min-width: $md) {
-    .intro-title {
-      padding: 2rem;
+    @media (max-height: $max-height-phone) {
+      height: 220vh;
     }
-
-    .intro-image {
-      margin: 2rem;
-    }
-  }
-}
-
-#project-container {
-  box-shadow: 0 4px 35px 0 rgba(45, 156, 219, 0.2);
-  padding: 2rem 0.5rem;
-  background-color: $tertiary-color;
-  margin-top: -6rem;
 
     @media (max-width: $sm) {
-    text-align: center;
-    padding: 1rem;
+      height: 50rem;
+    }
   }
-      .icon {
-        width: clamp(1.5rem, 2vw, 1.9rem);
-        height: auto;
+
+    .no-video-container-height {
+    height: 30vh;
+
+    @media (max-height: $max-height-phone) {
+      height: 30vh;
+    }
+
+    @media (max-width: $sm) {
+      height: 15rem;
+    }
+  }
+
+  #media-container {
+    width: 100%;
+    background-color: $primary-color;
+    overflow: hidden;
+    position: relative;
+
+    .title {
+      color: $tertiary-color;
+      text-align: center;
+      margin: 2rem;
+    }
+
+    &::after {
+      content: "";
+      width: 100%;
+      height: 40vh;
+      bottom: -0.5%;
+      left: 0;
+      position: absolute;
+      background: url(../../assets/img/project-details-container.svg);
+      background-size: cover;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    @media (min-width: $md) {
+      .intro-title {
+        padding: 2rem;
       }
 
-  .title {
-    color: $primary-color;
-    margin-bottom: 2rem;
+      .intro-image {
+        margin: 2rem;
+      }
+    }
   }
 
-  .project-details-container {
-    padding: 2rem;
-    background-color: $primary-color;
-    margin-bottom: 4rem;
+  #project-container {
+    box-shadow: 0 4px 35px 0 rgba(45, 156, 219, 0.2);
+    padding: 2rem 0.5rem;
+    background-color: $tertiary-color;
+    margin-top: -6rem;
 
-    .project-info-items-container {
-      display: flex;
-      flex-flow: wrap;
+    @media (max-width: $sm) {
+      text-align: center;
+      padding: 1rem;
+    }
+    .icon {
+      width: clamp(1.5rem, 2vw, 1.9rem);
+      height: auto;
+    }
 
-           @media (max-width: $sm) {
+    .title {
+      color: $primary-color;
+      margin-bottom: 2rem;
+
+      @media (max-height: $max-height-phone) {
+        margin-top: 2rem;
+      }
+    }
+
+    .project-details-container {
+      padding: 2rem;
+      background-color: $primary-color;
+      margin-bottom: 4rem;
+
+      .project-info-items-container {
+        display: flex;
+        flex-flow: wrap;
+
+        @media (max-width: $sm) {
           display: block;
         }
 
-      .project-items-container {
-        display: inline-flex;
-        margin-left: 1rem;
+        .project-items-container {
+          display: inline-flex;
+          margin-left: 1rem;
 
-        @media (max-width: $sm) {
-          margin: 0.5rem auto;
+          @media (max-width: $sm) {
+            margin: 0.5rem auto;
+          }
+
+          .project-info-item {
+            font-size: clamp(0.6rem, 1.5vw, 0.8rem) !important;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: $primary-color;
+            background-color: $tertiary-color;
+            padding: 0.3rem 0.5rem;
+            margin: auto 0.2rem auto 0.2rem;
+            height: fit-content;
+          }
         }
 
-            .project-info-item {
-        font-size: clamp(0.6rem, 1.5vw, 0.8rem) !important;
-        border-radius: 0.5rem;
+        .project-title {
+          color: $secondary-color;
+          font-weight: 900 !important;
+          margin: 0;
+          font-size: clamp(1.8rem, 2.2vw, 3rem);
+        }
+      }
+
+      .project-company {
+        display: flex;
+        color: $tertiary-color;
         font-weight: 600;
-        color: $primary-color;
-        background-color: $tertiary-color;
-        padding: 0.3rem 0.5rem;
-        margin: auto 0.2rem auto 0.2rem;
-        height: fit-content;
-      }
+        margin: 0.5rem 0;
+
+        @media (max-width: $sm) {
+          justify-content: center;
+          margin: 0.5rem;
+        }
       }
 
-      .project-title {
+      .project-subtitle {
         color: $secondary-color;
-        font-weight: 900 !important;
+        font-size: clamp(0.9rem, 1.5vw, 1.3rem) !important;
+        margin: 1rem 0;
+
+        @media (max-width: $sm) {
+          margin: 0.5rem;
+        }
+      }
+      .project-description {
+        color: $text-color;
+      }
+
+      .project-skills-container {
         margin: 0;
-        font-size: clamp(1.8rem, 2.2vw, 3rem);
+
+        &::v-deep .skill-items-container {
+          width: 100%;
+          margin: 0 !important;
+        }
+        &::v-deep .skill-items-container .skill-item {
+          filter: none;
+        }
+      }
+
+      .projects-links {
+        align-items: flex-end;
+        justify-content: flex-end;
+        flex-grow: 1;
+        display: flex;
       }
     }
 
-    .project-company {
+    button {
+      width: auto;
       display: flex;
-      color: $tertiary-color;
-      font-weight: 600;
-      margin:0.5rem 0;
+      padding: 0.4rem 0.8rem;
+      font-size: 1.5rem;
+      border: $primary-color solid 0.1rem;
+      background: $tertiary-color;
+      color: $primary-color;
+      transition: 0.5s;
 
-      @media (max-width: $sm) {
-        justify-content: center;
-        margin:0.5rem;
+      &:hover {
+        background-color: $primary-color;
+        color: $tertiary-color;
+        border: $tertiary-color solid 0.1rem;
       }
-    }
-
-    .project-subtitle {
-      color: $secondary-color;
-      font-size: clamp(0.9rem, 1.5vw, 1.3rem) !important;
-      margin:1rem 0;
-
-       @media (max-width: $sm) {
-        margin:0.5rem;
-      }
-    }
-    .project-description {
-      color: $text-color;
-    }
-
-
-    .project-skills-container {
-      margin: 0;
-
-      &::v-deep .skill-items-container {
-        width: 100%;
-        margin: 0 !important;
-      }
-      &::v-deep .skill-items-container .skill-item {
-        filter: none;
-      }
-    }
-
-    .projects-links {
-     align-items: flex-end;
-     justify-content: flex-end;
-     flex-grow: 1;
-     display: flex;
-    }
-  }
-
-
-
-  button {
-    width: auto;
-    display: flex;
-    padding: 0.4rem 0.8rem;
-    font-size: 1.5rem;
-    border: $primary-color solid 0.1rem;
-    background: $tertiary-color;
-    color: $primary-color;
-    transition: 0.5s;
-
-    &:hover {
-      background-color: $primary-color;
-      color: $tertiary-color;
-      border: $tertiary-color solid 0.1rem;
     }
   }
 }

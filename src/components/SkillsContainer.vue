@@ -26,12 +26,11 @@ export default {
   margin: 2rem;
 
   h4 {
-    color:$tertiary-color;
+    color: $tertiary-color;
   }
   @media only screen and (max-width: $xl) {
-    margin:2rem 0;
-  
-}
+    margin: 2rem 0;
+  }
 }
 .skill-items-container {
   display: flex;
@@ -40,13 +39,13 @@ export default {
 
   @media (max-width: $sm) {
     justify-content: center;
-    margin:1rem auto;
-           }
+    margin: 1rem auto;
+  }
 }
 .skill-item {
   border: $tertiary-color solid 0.1rem;
   border-radius: 0.5rem;
-  color:$tertiary-color;
+  color: $tertiary-color;
   margin: 0.2rem;
   padding: 0.1rem 0.5rem;
 }
