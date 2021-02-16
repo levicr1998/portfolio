@@ -125,8 +125,8 @@ header {
       right: 0;
       z-index: 3;
       cursor: pointer;
-      width: 50px;
-      height: 50px;
+      width: 65px;
+      height: 65px;
       opacity: 0;
     }
 
@@ -171,6 +171,7 @@ header {
       background: inherit;
     }
 
+
     /* Moves Line Down */
     .hamburger > div::after {
       top: 10px;
@@ -179,7 +180,7 @@ header {
     /* Toggler Animation */
     .toggler:checked + .hamburger > div {
       transform: rotate(135deg);
-      background-color: $primary-color;
+      background-color: $tertiary-color;
     }
 
     /* Turns Lines Into X */
@@ -187,13 +188,18 @@ header {
     .toggler:checked + .hamburger > div:after {
       top: 0;
       transform: rotate(90deg);
-      background-color: $primary-color;
+      background-color: $tertiary-color;
     }
+
+.toggler:checked + .hamburger {
+ background-color: $primary-color; 
+}
+
 
     /* Rotate On Hover When Checked */
     .toggler:checked:hover + .hamburger > div {
       transform: rotate(225deg);
-      background-color: $primary-color;
+      background-color: $tertiary-color;
     }
 
     .toggler:checked ~ .menu > div {
