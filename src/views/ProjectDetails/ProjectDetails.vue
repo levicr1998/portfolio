@@ -182,14 +182,15 @@
     &::after {
       content: "";
       width: 100%;
-      height: 40vh;
-      bottom: -0.5%;
+      height: 30vh;
       left: 0;
+      bottom:-0.5%;
       position: absolute;
       background: url(../../assets/img/project-details-container.svg);
       background-size: cover;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+
     }
 
     @media (min-width: $md) {
@@ -224,6 +225,10 @@
 
       @media (max-height: $max-height-phone) {
         margin-top: 2rem;
+      }
+      
+      @media (max-height: $md) {
+        margin-top: 3rem;
       }
     }
 
