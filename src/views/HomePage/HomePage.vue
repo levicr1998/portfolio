@@ -375,7 +375,6 @@ export default {
   },
   mounted() {
     this.contentful.getEntries().then((response) => {
-      console.log(response.items);
       this.projects = response.items;
     });
   },

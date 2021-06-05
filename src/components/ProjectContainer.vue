@@ -176,7 +176,6 @@ export default {
   },
   methods: {
     scrollToTop() {
-      console.log("werkt");
       window.scrollTo(0, 0);
     },
   },
