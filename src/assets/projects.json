@@ -17,9 +17,7 @@
       "HERE C&C tool",
       "HERE SDK & API's"
     ],
-    "thumbnail": {
-      "image": "thumbnails/thumbnail-adly.png"
-    },
+    "thumbnail": "thumbnails/thumbnail-adly.png",
     "videoId": "zNkLFiaqu9Q",
     "demoVideoEnabled":true,
     "links": {
@@ -118,9 +116,7 @@
     ],
     "videoId": "tCaEbL5fZDI",
     "demoVideoEnabled":true,
-    "thumbnail": {
-      "image": "thumbnails/thumbnail-feedme.png"
-    },
+    "thumbnail": "thumbnails/thumbnail-feedme.png",
     "links": {
       "github": {
         "enabled": true,
