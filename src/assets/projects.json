@@ -52,9 +52,7 @@
     ],
     "videoId": "",
     "demoVideoEnabled":false,
-    "thumbnail": {
-      "image": "thumbnails/thumbnail-humanflower.png"
-    },
+    "thumbnail":"thumbnails/thumbnail-humanflower.png",
     "links": {
       "github": {
         "enabled": false,
@@ -88,9 +86,7 @@
     ],
     "videoId": "",
     "demoVideoEnabled":false,
-    "thumbnail": {
-      "image": "thumbnails/thumbnail-socialshiftacademy.png"
-    },
+    "thumbnail": "thumbnails/thumbnail-socialshiftacademy.png",
     "links": {
       "github": {
         "enabled": false

@@ -4,7 +4,18 @@
     <div id="intro-container" class="fluid-container">
       <div class="row h-75">
         <div
-          class="col-8 offset-2 col-sm-6 offset-sm-3 col-xl-3 offset-xl-2 col-md-4 offset-md-1 my-auto text-md-left text-center"
+          class="
+            col-8
+            offset-2
+            col-sm-6
+            offset-sm-3
+            col-xl-3
+            offset-xl-2
+            col-md-4
+            offset-md-1
+            my-auto
+            text-md-left text-center
+          "
           data-aos="fade-right"
           data-aos-duration="1000"
           data-aos-delay="500"
@@ -17,7 +28,16 @@
           </h1>
         </div>
         <div
-          class="col-8 offset-2 col-sm-6 offset-sm-3 col-xl-3 offset-md-2 col-md-4 my-auto"
+          class="
+            col-8
+            offset-2
+            col-sm-6
+            offset-sm-3
+            col-xl-3
+            offset-md-2
+            col-md-4
+            my-auto
+          "
         >
           <img
             src="../../assets/img/intro-image.png"
@@ -26,7 +46,8 @@
             data-aos="fade-left"
             data-aos-duration="1000"
             data-aos-delay="500"
-            data-aos-anchor-placement="top-bottom">
+            data-aos-anchor-placement="top-bottom"
+          />
         </div>
       </div>
     </div>
@@ -77,9 +98,9 @@
           >
             My projects
           </h2>
-          <div v-for="project in projectsToLoad" v-bind:key="project.id">
+          <div v-for="project in projectsToLoad" v-bind:key="project.fields.id">
             <project-container
-              :project="project"
+              :project="project.fields"
               data-aos="fade-left"
               data-aos-duration="1000"
               data-aos-mirror="true"
@@ -110,7 +131,14 @@
     <div id="contact-container" class="fluid-container">
       <div class="row" data-aos="zoom-in" data-aos-duration="1000">
         <div
-          class="col-xl-6 col-sm-8 offset-sm-2 col-10 offset-1 offset-xl-3 contact-box my-auto"
+          class="
+            col-xl-6 col-sm-8
+            offset-sm-2
+            col-10
+            offset-1 offset-xl-3
+            contact-box
+            my-auto
+          "
         >
           <h2 class="title">Contact me</h2>
           <p class="text-color">Feel free to send me a message!</p>
@@ -127,7 +155,7 @@
 </template>
 <style lang="scss" scoped>
 #app {
-  background-color:$tertiary-color;
+  background-color: $tertiary-color;
 }
 
 #intro-container {
@@ -137,9 +165,9 @@
   overflow: hidden;
   position: relative;
 
-    @media (max-height: $max-height-phone) {
- height:160vh;
-    }
+  @media (max-height: $max-height-phone) {
+    height: 160vh;
+  }
 
   &::after {
     content: "";
@@ -338,7 +366,6 @@
 }
 </style>
 <script>
-import projects from "../../assets/projects.json";
 import SkillsContainer from "@/components/SkillsContainer.vue";
 import ProjectContainer from "@/components/ProjectContainer.vue";
 export default {
@@ -346,11 +373,18 @@ export default {
     SkillsContainer,
     ProjectContainer,
   },
+  mounted() {
+    this.contentful.getEntries().then((response) => {
+      console.log(response.items);
+      this.projects = response.items;
+    });
+  },
+
   data() {
     return {
       isLoading: false,
       loadedMoreProjects: false,
-      projects: projects,
+      projects: [],
       typeValue: "Developer",
       typeStatus: false,
       typeArray: ["Developer", "Motivator", "Teamplayer", "Adventurer"],

@@ -40,7 +40,7 @@
         class="col-lg-6 col-xl-4 col-md-8 mx-md-auto pt-4 offset-xl-2 my-auto"
       >
         <img
-          :src="require(`@/assets/img/${project.thumbnail.image}`)"
+          :src="require(`@/assets/img/${project.thumbnail}`)"
           alt="Project image"
         />
       </div>
@@ -133,8 +133,8 @@
     }
   }
   .icon {
-    width: clamp(1.5rem, 2vw, 1.9rem);
-    height: auto;
+         height: auto;
+        width: 1.5rem;
   }
 
   button {
