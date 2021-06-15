@@ -1,5 +1,8 @@
 <template>
-  <div id="project">
+  <div v-if="!isLoaded">
+    <loader />
+  </div>
+  <div id="project" v-else>
     <!-- Project section -->
     <router-link to="/">
       <div
@@ -110,6 +113,7 @@
         </div>
       </div>
     </div>
+    <the-footer />
   </div>
 </template>
 <style lang="scss" scoped>
@@ -343,30 +347,37 @@
 <script>
 import SkillsContainer from "@/components/SkillsContainer";
 import VideoPlayer from "@/components/VideoPlayer";
+import Loader from "@/components/Loader";
+import TheFooter from "@/components/TheFooter.vue";
 
 export default {
   components: {
     SkillsContainer,
+    Loader,
     VideoPlayer,
+    TheFooter,
   },
   data() {
     return {
       skillNameEnabled: false,
-      isLoaded:false,
+      isLoaded: false,
       project: {},
     };
   },
   mounted() {
     this.getProjectDetails();
+    this.stopLoading();
   },
   methods: {
+    stopLoading() {
+      setTimeout(() => {
+        this.isLoaded = true;
+      }, 500);
+    },
     getProjectDetails() {
-      this.$emit("set-loading-state");
       var projectId = this.$route.params.id;
       this.contentful.getEntry(projectId).then((response) => {
         this.project = response.fields;
-         this.$emit("set-loading-state");
-        this.isLoaded = true;
       });
     },
   },

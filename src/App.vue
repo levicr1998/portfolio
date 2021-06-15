@@ -1,52 +1,15 @@
 <template>
   <div id="app">
-    <div v-if="!isLoaded" class="loading-background">
-      <div class="loading-container">
-        <loader></loader>
-      </div>
-    </div>
-    <div v-show="isLoaded">
-      <the-header
-        v-show="
-          ['home'].includes($route.name) && !['not-found'].includes($route.name)
-        "
-      />
-      <router-view @set-loading-state="setLoadingState" />
-      <the-footer v-show="!['not-found'].includes($route.name)" />
+    <div>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import TheHeader from "@/components/TheHeader.vue";
-import TheFooter from "@/components/TheFooter.vue";
-import Loader from "@/components/Loader";
 
 export default {
-  name: "App",
-  components: {
-    TheHeader,
-    TheFooter,
-    Loader,
-  },
-  data() {
-    return {
-      isLoaded: false,
-    };
-  },
-  mounted() {
-    this.loadingView();
-  },
-  methods: {
-    loadingView() {
-      setTimeout(() => {
-        this.isLoaded = true;
-      }, 1000);
-    },
-    setLoadingState(){
-      this.isLoaded = !this.isLoaded;
-    }
-  },
+  name: "App"
 };
 </script>
 
@@ -59,17 +22,5 @@ export default {
   left: 0;
   padding: 0;
   margin: 0;
-}
-
-.loading-background {
-  height: 100vh;
-
-  .loading-container {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    flex-direction: column;
-    justify-content: center;
-  }
 }
 </style>

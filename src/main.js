@@ -24,7 +24,7 @@ Vue.use(VueContentfulApi, contentful);
 new Vue({
   created() {
     AOS.init({
-      once: true
+      once: true,
     })
   },
   render: h => h(App),

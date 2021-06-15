@@ -1,5 +1,9 @@
 <template>
-  <div id="home">
+<div v-if="!isLoaded">
+<loader />
+</div>
+  <div id="home" v-else>
+    <the-header />
     <!-- Intro section -->
     <div id="intro-container" class="fluid-container">
       <div class="row h-75">
@@ -112,7 +116,7 @@
             data-aos-duration="1000"
             @click="toggleLoadProjects()"
           >
-            <div v-if="this.isLoading">
+            <div v-if="this.isLoadingMoreProjects">
               <img
                 class="button-loading"
                 src="../../assets/img/icons/three-dots-loading.svg"
@@ -151,6 +155,7 @@
         </div>
       </div>
     </div>
+    <the-footer />
   </div>
 </template>
 <style lang="scss" scoped>
@@ -368,31 +373,27 @@
 <script>
 import SkillsContainer from "@/components/SkillsContainer.vue";
 import ProjectContainer from "@/components/ProjectContainer.vue";
+import Loader from "@/components/Loader";
+import TheHeader from "@/components/TheHeader.vue";
+import TheFooter from "@/components/TheFooter.vue";
+
 export default {
   components: {
     SkillsContainer,
     ProjectContainer,
+    TheHeader,
+    TheFooter,
+    Loader
   },
   mounted() {
-    const query = {
-      skip: 0,
-      limit: 10,
-      content_type: "project",
-      order: "-fields.id"
-     
-    };
-
-    this.contentful
-      .getEntries(query)
-      .then((response) => {
-        this.projects = response.items;
-        console.log(this.projects)
-      });
+this.getProjects();
+this.stopLoading();
   },
 
   data() {
     return {
-      isLoading: false,
+      isLoaded: false,
+      isLoadingMoreProjects: false,
       loadedMoreProjects: false,
       projects: [],
       typeValue: "Developer",
@@ -453,6 +454,23 @@ export default {
     },
   },
   methods: {
+    getProjects(){
+    const query = {
+      skip: 0,
+      limit: 10,
+      content_type: "project",
+      order: "-fields.id",
+    };
+
+    this.contentful.getEntries(query).then((response) => {
+      this.projects = response.items;
+    });
+    },
+    stopLoading() {
+      setTimeout(() => {
+        this.isLoaded = true;
+      }, 500);
+    },
     toggleLoadProjects() {
       this.isLoading = true;
       setTimeout(() => {
