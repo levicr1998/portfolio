@@ -5,13 +5,13 @@
         <loader></loader>
       </div>
     </div>
-    <div v-else>
+    <div v-show="isLoaded">
       <the-header
         v-show="
           ['home'].includes($route.name) && !['not-found'].includes($route.name)
         "
       />
-      <router-view />
+      <router-view @set-loading-state="setLoadingState" />
       <the-footer v-show="!['not-found'].includes($route.name)" />
     </div>
   </div>
@@ -43,6 +43,9 @@ export default {
         this.isLoaded = true;
       }, 1000);
     },
+    setLoadingState(){
+      this.isLoaded = !this.isLoaded;
+    }
   },
 };
 </script>

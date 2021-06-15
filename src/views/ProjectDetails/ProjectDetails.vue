@@ -11,7 +11,11 @@
         <img class="back-button" src="../../assets/img/icons/back-icon.svg" />
       </div>
     </router-link>
-    <div id="media-container" class="fluid-container video-container-height"   :class="{ 'no-video-container-height': !project.demoVideoEnabled }" >
+    <div
+      id="media-container"
+      class="fluid-container video-container-height"
+      :class="{ 'no-video-container-height': !project.demoVideoEnabled }"
+    >
       <h2
         class="title"
         data-aos="fade-left"
@@ -110,7 +114,7 @@
 </template>
 <style lang="scss" scoped>
 #app {
-  background-color:$primary-color;
+  background-color: $primary-color;
 }
 #project {
   background: $primary-color;
@@ -155,7 +159,7 @@
     }
   }
 
-    .no-video-container-height {
+  .no-video-container-height {
     height: 30vh;
 
     @media (max-height: $max-height-phone) {
@@ -184,13 +188,12 @@
       width: 100%;
       height: 30vh;
       left: 0;
-      bottom:-0.5%;
+      bottom: -0.5%;
       position: absolute;
       background: url(../../assets/img/project-details-container.svg);
       background-size: cover;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-
     }
 
     @media (min-width: $md) {
@@ -226,7 +229,7 @@
       @media (max-height: $max-height-phone) {
         margin-top: 2rem;
       }
-      
+
       @media (max-height: $md) {
         margin-top: 3rem;
       }
@@ -340,7 +343,6 @@
 <script>
 import SkillsContainer from "@/components/SkillsContainer";
 import VideoPlayer from "@/components/VideoPlayer";
-import projectsJson from "../../assets/projects.json";
 
 export default {
   components: {
@@ -350,20 +352,21 @@ export default {
   data() {
     return {
       skillNameEnabled: false,
-      project: "",
+      isLoaded:false,
+      project: {},
     };
   },
-  beforeMount() {
-    var projectId = this.$route.params.id;
-    this.getProjectDetails(projectId);
+  mounted() {
+    this.getProjectDetails();
   },
   methods: {
-    getProjectDetails(projectId) {
-      const projects = projectsJson;
-      projects.forEach((proj) => {
-        if (projectId == proj.id) {
-          this.project = proj;
-        }
+    getProjectDetails() {
+      this.$emit("set-loading-state");
+      var projectId = this.$route.params.id;
+      this.contentful.getEntry(projectId).then((response) => {
+        this.project = response.fields;
+         this.$emit("set-loading-state");
+        this.isLoaded = true;
       });
     },
   },

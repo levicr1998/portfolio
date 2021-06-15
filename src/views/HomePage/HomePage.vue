@@ -100,7 +100,7 @@
           </h2>
           <div v-for="project in projectsToLoad" v-bind:key="project.fields.id">
             <project-container
-              :project="project.fields"
+              :project="project"
               data-aos="fade-left"
               data-aos-duration="1000"
               data-aos-mirror="true"
@@ -374,9 +374,20 @@ export default {
     ProjectContainer,
   },
   mounted() {
-    this.contentful.getEntries().then((response) => {
-      this.projects = response.items;
-    });
+    const query = {
+      skip: 0,
+      limit: 10,
+      content_type: "project",
+      order: "-fields.id"
+     
+    };
+
+    this.contentful
+      .getEntries(query)
+      .then((response) => {
+        this.projects = response.items;
+        console.log(this.projects)
+      });
   },
 
   data() {
@@ -386,14 +397,37 @@ export default {
       projects: [],
       typeValue: "Developer",
       typeStatus: false,
-      typeArray: ["Developer", "Motivator", "Teamplayer", "Discoverer", "Creator"],
+      typeArray: [
+        "Developer",
+        "Motivator",
+        "Teamplayer",
+        "Discoverer",
+        "Creator",
+      ],
       typingSpeed: 200,
       erasingSpeed: 100,
       newTextDelay: 1000,
       typeArrayIndex: 0,
       charIndex: 0,
-      languages: ["HTML", "CSS/SCSS", "Javascript", "Java", "PHP", "C#", "SQL", "NoSQL", "Dart"],
-      frameworks: ["Springboot", "Angular", "Vue.js", "Symfony", "Capacitor", "Flutter"],
+      languages: [
+        "HTML",
+        "CSS/SCSS",
+        "Javascript",
+        "Java",
+        "PHP",
+        "C#",
+        "SQL",
+        "NoSQL",
+        "Dart",
+      ],
+      frameworks: [
+        "Springboot",
+        "Angular",
+        "Vue.js",
+        "Symfony",
+        "Capacitor",
+        "Flutter",
+      ],
       tools: [
         "Git & GitHub",
         "Adobe XD",
@@ -405,7 +439,7 @@ export default {
         "Trello",
         "Windows Terminal",
         "Figma",
-        "Android Studio"
+        "Android Studio",
       ],
     };
   },

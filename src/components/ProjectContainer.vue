@@ -4,12 +4,12 @@
       <div class="col-lg-6">
         <div class="project-info-items-container">
           <h3 class="project-title">
-            {{ project.title }}
+            {{ project.fields.title }}
           </h3>
           <div class="project-items-container">
             <div
               class="project-info-item"
-              v-for="detail in project.details"
+              v-for="detail in project.fields.details"
               v-bind:key="detail"
             >
               {{ detail }}
@@ -22,17 +22,17 @@
             alt="Git hub icon"
             class="icon"
           />
-          <p class="my-3 pl-2">{{ project.company }}</p>
+          <p class="my-3 pl-2">{{ project.fields.company }}</p>
         </div>
         <p class="project-description">
-          {{ project.description }}
+          {{ project.fields.description }}
         </p>
         <skills-container
           :skillNameEnabled="skillNameEnabled"
-          :skills="project.skills"
+          :skills="project.fields.skills"
           class="project-skills-container"
         />
-        <router-link :to="{ name: 'project', params: { id: project.id } }">
+        <router-link :to="{ name: 'project', params: { id: project.sys.id } }">
           <button @click="scrollToTop()" class="my-4">Learn more</button>
         </router-link>
       </div>
@@ -40,7 +40,7 @@
         class="col-lg-6 col-xl-4 col-md-8 mx-md-auto pt-4 offset-xl-2 my-auto"
       >
         <img
-          :src="require(`@/assets/img/${project.thumbnail}`)"
+          :src="project.fields.thumbnail.fields.file.url"
           alt="Project image"
         />
       </div>
