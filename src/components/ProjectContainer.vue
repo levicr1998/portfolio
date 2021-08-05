@@ -41,6 +41,7 @@
       >
         <img
           :src="project.fields.thumbnail.fields.file.url"
+          class="project-thumbnail"
           alt="Project image"
         />
       </div>
@@ -57,7 +58,7 @@
     text-align: center;
   }
 
-  img {
+  .project-thumbnail {
     height: fit-content;
     object-fit: contain;
 
@@ -65,8 +66,12 @@
       max-height: 12rem;
     }
 
-    @media (max-width: $lg) {
-      max-height: 14rem;
+        @media (max-width: $lg) {
+      max-height: 15rem;
+    }
+
+    @media (min-width: $lg) {
+      max-height: 25rem;
     }
   }
 
@@ -133,8 +138,8 @@
     }
   }
   .icon {
-         height: auto;
-        width: 1.5rem;
+    height: auto;
+    width: 1.5rem;
   }
 
   button {

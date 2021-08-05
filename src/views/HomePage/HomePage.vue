@@ -1,7 +1,7 @@
 <template>
-<div v-if="!isLoaded">
-<loader />
-</div>
+  <div v-if="!isLoaded">
+    <loader />
+  </div>
   <div id="home" v-else>
     <the-header />
     <!-- Intro section -->
@@ -383,11 +383,11 @@ export default {
     ProjectContainer,
     TheHeader,
     TheFooter,
-    Loader
+    Loader,
   },
   mounted() {
-this.getProjects();
-this.stopLoading();
+    this.getProjects();
+    this.stopLoading();
   },
 
   data() {
@@ -454,17 +454,28 @@ this.stopLoading();
     },
   },
   methods: {
-    getProjects(){
-    const query = {
-      skip: 0,
-      limit: 10,
-      content_type: "project",
-      order: "-fields.id",
-    };
+    getProjects() {
+      const query = {
+        skip: 0,
+        limit: 10,
+        content_type: "project",
+        order: "-fields.id",
+      };
 
-    this.contentful.getEntries(query).then((response) => {
-      this.projects = response.items;
-    });
+      this.contentful.getEntries(query).then((response) => {
+        this.projects = response.items;
+      });
+    },
+    scrollToPreviousView() {
+      if (this.$router.currentRoute["hash"]) {
+        if (this.$route.hash == "#projects-container") {
+          const yOffset = 250;
+          const el = document.querySelector(this.$route.hash);
+          const y =
+            el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }
     },
     stopLoading() {
       setTimeout(() => {
@@ -518,6 +529,15 @@ this.stopLoading();
   created() {
     this.charIndex = 9;
     setTimeout(this.typeText, this.newTextDelay + 200);
+  },
+  watch: {
+    isLoaded(isLoadedStatus) {
+      if (isLoadedStatus == true) {
+        this.$nextTick(() => {
+          this.scrollToPreviousView();
+        });
+      }
+    },
   },
 };
 </script>

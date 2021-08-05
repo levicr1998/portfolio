@@ -4,7 +4,7 @@
   </div>
   <div id="project" v-else>
     <!-- Project section -->
-    <router-link to="/">
+    <router-link :to= "{path:'/',  hash:'projects-container'}">
       <div
         class="back-button-container"
         data-aos="fade-right"
