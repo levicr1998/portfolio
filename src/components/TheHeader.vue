@@ -104,6 +104,15 @@ header {
     }
   }
 
+  @media (min-width: $md) {
+  #toggler {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+  }
+
   @media (max-width: $md) {
     img {
       display: none;
@@ -128,6 +137,7 @@ header {
       width: 65px;
       height: 65px;
       opacity: 0;
+      background-color: red;
     }
 
     .hamburger {
@@ -171,7 +181,6 @@ header {
       background: inherit;
     }
 
-
     /* Moves Line Down */
     .hamburger > div::after {
       top: 10px;
@@ -191,10 +200,9 @@ header {
       background-color: $tertiary-color;
     }
 
-.toggler:checked + .hamburger {
- background-color: $primary-color; 
-}
-
+    .toggler:checked + .hamburger {
+      background-color: $primary-color;
+    }
 
     /* Rotate On Hover When Checked */
     .toggler:checked:hover + .hamburger > div {
