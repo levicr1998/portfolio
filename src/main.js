@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 
 let contentful = Contentful.createClient({
   space: 'txhxwqia2lo4',
-  accessToken: 'eB1d6i1VAbJllTZEjHC_GWhmRxFmsUbiB2434-I3zVQ',
+  accessToken: process.env.VUE_APP_ACCESS_TOKEN_CONTENTFUL,
 })
 
 Vue.use(VueYoutube);
